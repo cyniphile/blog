@@ -4,7 +4,7 @@
         "post0": {
             "title": "Notes On A Year Off",
             "content": "",
-            "url": "https://cyniphile.github.io/blog/jupyter/2020/02/20/test.html",
+            "url": "https://rump.blog/blog/jupyter/2020/02/20/test.html",
             "relUrl": "/jupyter/2020/02/20/test.html",
             "date": " • Feb 20, 2020"
         }
@@ -19,7 +19,7 @@
       ,"page1": {
           "title": "About Me",
           "content": "What are you doing here? Nothing creepy I hope. . This website is powered by fastpages. .",
-          "url": "https://cyniphile.github.io/blog/about/",
+          "url": "https://rump.blog/blog/about/",
           "relUrl": "/about/",
           "date": ""
       }
@@ -51,7 +51,7 @@
       ,"page10": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
-          "url": "https://cyniphile.github.io/blog/robots.txt",
+          "url": "https://rump.blog/blog/robots.txt",
           "relUrl": "/robots.txt",
           "date": ""
       }

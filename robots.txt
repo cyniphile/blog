@@ -1,1 +1,1 @@
-Sitemap: https://cyniphile.github.io/blog/sitemap.xml
+Sitemap: https://rump.blog/blog/sitemap.xml

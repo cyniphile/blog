@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://cyniphile.github.io/blog/jupyter/2020/02/20/test.html</loc>
+<loc>https://rump.blog/blog/jupyter/2020/02/20/test.html</loc>
 <lastmod>2020-02-20T00:00:00-06:00</lastmod>
 </url>
 <url>
-<loc>https://cyniphile.github.io/blog/about/</loc>
+<loc>https://rump.blog/blog/about/</loc>
 </url>
 <url>
-<loc>https://cyniphile.github.io/blog/</loc>
+<loc>https://rump.blog/blog/</loc>
 </url>
 <url>
-<loc>https://cyniphile.github.io/blog/search/</loc>
+<loc>https://rump.blog/blog/search/</loc>
 </url>
 <url>
-<loc>https://cyniphile.github.io/blog/categories/</loc>
+<loc>https://rump.blog/blog/categories/</loc>
 </url>
 </urlset>
