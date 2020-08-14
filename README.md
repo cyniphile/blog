@@ -1,10 +1,12 @@
 [//]: # (This template replaces README.md when someone creates a new repo with the fastpages template.)
 
 todo: 
-add goodreads, 
-linkedin,
+add goodreads, linkedin,
 remove rss
 add header image
+resolve about me on posts and about me page
+add inline footnote a la https://www.eugenewei.com/blog/2020/8/3/tiktok-and-the-sorting-hat
+remove preview from post page
 
 ![](https://github.com/cyniphile/blog/workflows/CI/badge.svg) 
 ![](https://github.com/cyniphile/blog/workflows/GH-Pages%20Status/badge.svg) 
