@@ -14,9 +14,17 @@
         -webkit-font-smoothing: antialiased !important;
         text-rendering: optimizeLegibility !important;
         font-family: 'Lato', sans-serif;
+        font-weight: 900;
 }
 
-.page-link {
+.page-link .post-link .post-title {
+        -webkit-font-smoothing: antialiased !important;
+        text-rendering: optimizeLegibility !important;
+        font-family: 'Lato', sans-serif;
+}
+
+
+#posts {
         -webkit-font-smoothing: antialiased !important;
         text-rendering: optimizeLegibility !important;
         font-family: 'Lato', sans-serif;
