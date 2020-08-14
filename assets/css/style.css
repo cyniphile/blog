@@ -488,6 +488,8 @@ table td { text-overflow: ellipsis; overflow: hidden; max-width: 15em; }
 
 .site-title, .page-link, .post-link, .post-title { font-family: 'Lato', sans-serif; }
 
+.page-content { font-family: 'Source Serif Pro', serif; }
+
 #posts { font-family: 'Lato', sans-serif; }
 
 /*# sourceMappingURL=style.css.map */
