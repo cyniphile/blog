@@ -484,10 +484,10 @@ table td { text-overflow: ellipsis; overflow: hidden; max-width: 15em; }
 
 .highlight .gd { color: #ff5555; }
 
-.site-title { -webkit-font-smoothing: antialiased !important; text-rendering: optimizeLegibility !important; font-family: 'Lato', sans-serif; font-weight: 900; }
+.site-title { font-weight: 900; }
 
-.page-link .post-link .post-title { -webkit-font-smoothing: antialiased !important; text-rendering: optimizeLegibility !important; font-family: 'Lato', sans-serif; }
+.site-title, .page-link, .post-link, .post-title { font-family: 'Lato', sans-serif; }
 
-#posts { -webkit-font-smoothing: antialiased !important; text-rendering: optimizeLegibility !important; font-family: 'Lato', sans-serif; }
+#posts { font-family: 'Lato', sans-serif; }
 
 /*# sourceMappingURL=style.css.map */
