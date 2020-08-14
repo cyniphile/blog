@@ -484,6 +484,6 @@ table td { text-overflow: ellipsis; overflow: hidden; max-width: 15em; }
 
 .highlight .gd { color: #ff5555; }
 
-.page-content { -webkit-font-smoothing: antialiased !important; text-rendering: optimizeLegibility !important; font-family: 'Lato', sans-serif; }
+.page-heading { -webkit-font-smoothing: antialiased !important; text-rendering: optimizeLegibility !important; font-family: 'Lato', sans-serif; }
 
 /*# sourceMappingURL=style.css.map */
