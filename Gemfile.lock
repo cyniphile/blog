@@ -133,6 +133,7 @@ PLATFORMS
 DEPENDENCIES
   faraday (< 1.0)
   jekyll (~> 4.0.0)
+  jekyll-feed (~> 0.12)
   jekyll-gist
   jekyll-octicons
   jekyll-paginate
