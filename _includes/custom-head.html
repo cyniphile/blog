@@ -7,23 +7,16 @@
 
 
 {%- include favicons.html -%}
-
-<link rel="apple-touch-icon" sizes="152x152" href="{{ "images/favicon_package_v0.16/apple-touch-icon.png" | relative_url }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ "images/favicon_package_v0.16/favicon-32x32.png" | relative_url }}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ "images/favicon_package_v0.16/favicon-16x16.png" | relative_url }}">
-<link rel="manifest" href="{{ "images/favicon_package_v0.16/site.webmanifest" | relative_url }}">
-<link rel="mask-icon" href="{{ "images/favicon_package_v0.16/safari-pinned-tab.svg" | relative_url }}" color="#5bbad5">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff">
 {% seo %}
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
 <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;900&display=swap" rel="stylesheet">
-
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap" rel="stylesheet">
 {%- feed_meta -%}
 {%- if jekyll.environment == 'production' and site.google_analytics -%}
     {%- include google-analytics.html -%}
+{%- endif -%}
+
+{%- if site.annotations -%}
+<script src="https://hypothes.is/embed.js" async></script>
 {%- endif -%}
 
 {% if site.use_math %}
