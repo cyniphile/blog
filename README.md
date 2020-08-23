@@ -1,11 +1,11 @@
 [//]: # (This template replaces README.md when someone creates a new repo with the fastpages template.)
 
+Run `make server` in root to load dev server
+Bassed on [minima](https://github.com/jekyll/minima) theme. 
+
 todo: 
-- add goodreads, linkedin,
-- remove rss
 - add header image
 - add inline footnote a la https://www.eugenewei.com/blog/2020/8/3/tiktok-and-the-sorting-hat
-remove preview from post page
 
 ![](https://github.com/cyniphile/blog/workflows/CI/badge.svg) 
 ![](https://github.com/cyniphile/blog/workflows/GH-Pages%20Status/badge.svg) 
