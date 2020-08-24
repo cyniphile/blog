@@ -482,9 +482,11 @@ table th { text-align: center !important; }
 
 .highlight .gd { color: #ff5555; }
 
-.site-title { font-weight: 900; color: #414040; letter-spacing: 1px; }
+.slash { font-size: 1.625rem; float: left; padding-right: 2px; margin-right: 2px; margin-left: 2px; }
 
-.site-title, .page-link, .post-link, .post-title { font-family: 'Lato', sans-serif; }
+.site-title, .slash { padding-right: 1px; font-weight: 900; color: #414040; letter-spacing: 1px; }
+
+.site-title, .slash, .page-link, .post-link, .post-title { font-family: 'Lato', sans-serif; }
 
 .post-content { font-family: 'Source Serif Pro', serif; }
 
