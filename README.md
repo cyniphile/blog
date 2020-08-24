@@ -2,7 +2,6 @@ Run `make server` in root to load dev server
 Bassed on [minima](https://github.com/jekyll/minima) theme. 
 
 todo: 
-- add header image
 - add inline footnote a la https://www.eugenewei.com/blog/2020/8/3/tiktok-and-the-sorting-hat
 
 ![](https://github.com/cyniphile/blog/workflows/CI/badge.svg) 
