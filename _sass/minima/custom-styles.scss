@@ -10,13 +10,23 @@
 // If you want to turn off dark background for syntax highlighting, comment or delete the below line.
 @import "minima/fastpages-dracula-highlight"; 
 
-.site-title {
+.slash{
+        font-size: 1.625rem;
+        //padding: 2px;
+        float: left;
+        padding-right:2px;
+        margin-right:2px;
+        margin-left:2px;
+}
+
+.site-title, .slash{
+        padding-right:1px;
         font-weight: 900;
         color: #414040;    
         letter-spacing: 1px;
 }
 
-.site-title, .page-link, .post-link, .post-title {
+.site-title, .slash, .page-link, .post-link, .post-title {
         font-family: 'Lato', sans-serif;
 }
 
