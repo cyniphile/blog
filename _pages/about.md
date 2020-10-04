@@ -10,12 +10,12 @@ I'm interested in a lot of things. I've written a [couple](https://writers.cover
 This website is powered by **[fastpages](https://github.com/fastai/fastpages)**.
 
 <div class="social-links">
-
-        <a class="fab fa-linkedin" href="https://www.linkedin.com/in/lucas-schiefelbein/"></a>
-        <a class="fab fa-imdb" href="https://www.imdb.com/user/ur27147194/?ref_=nv_usr_prof_2"></a>
-        <a class="fab fa-goodreads" href="https://www.goodreads.com/user/show/30189655-luke-schiefelbein"></a>
-        <a class="fab fa-twitter" href="https://twitter.com/dj_rump_roast"></a>
-    </div>
+    <a class="fab fa-twitter" href="https://twitter.com/dj_rump_roast"></a>
+    <a class="fab fa-linkedin" href="https://www.linkedin.com/in/lucas-schiefelbein/"></a>
+    <a class="fab fa-imdb" href="https://www.imdb.com/user/ur27147194/?ref_=nv_usr_prof_2"></a>
+    <a class="fab fa-goodreads" href="https://www.goodreads.com/user/show/30189655-luke-schiefelbein"></a>
+    <a class="fab fa-soundcloud" href="https://soundcloud.com/rump_roast"></a>
+</div>
 
 
 
