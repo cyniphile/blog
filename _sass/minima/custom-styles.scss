@@ -54,13 +54,44 @@
         font-family: 'Source Serif Pro', serif;
 }
 
-
-/** Site header */
 .site-header { 
         border-bottom: none; 
 }
 
-
 #posts {
         font-family: 'Lato', sans-serif;
+}
+
+.links-wrapper{
+        text-align: center;
+}
+
+.site-footer{
+        width: 100%;
+        padding: 5px;
+        background: white;
+        position: fixed;
+        bottom: 0;
+        color: white;
+}
+.site-nav {
+        display: inline-block;
+    position: static;
+    float: right;
+    border: none;
+    background-color: inherit;
+
+    .page-link {
+
+        font-weight: 900;
+      font-family: 'Lato', sans-serif;
+      line-height: $base-line-height;
+      display: inline;
+      padding: 0;
+
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+      margin-left: auto;
+    }
 }
