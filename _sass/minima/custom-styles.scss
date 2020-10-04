@@ -10,6 +10,20 @@
 // If you want to turn off dark background for syntax highlighting, comment or delete the below line.
 @import "minima/fastpages-dracula-highlight"; 
 
+.social-links{
+        padding-top: 15px;
+        text-align: center;
+        font-size: 20px;
+        color: #414040;    
+        a:link, a:visited {
+            line-height: 1px;
+            font-size: 40px;
+            color: #414040;    
+            padding: 10px;
+            text-decoration: none;
+        }
+}
+
 .slash{
         font-size: 1.625rem;
         //padding: 2px;
