@@ -482,13 +482,18 @@ table th { text-align: center !important; }
 
 .highlight .gd { color: #ff5555; }
 
-.slash { font-size: 1.625rem; float: left; padding-right: 2px; margin-right: 2px; margin-left: 2px; }
+.slash { font-size: 1.625rem; float: left; padding-right: 2px; margin-right: 2px; margin-left: 2px; letter-spacing: 0px; }
 
-.site-title, .slash { padding-right: 1px; font-weight: 900; color: #414040; letter-spacing: 1px; }
+.site-title, .slash { margin-top: 10px; padding-right: 1px; font-weight: 900; font-size: 50px; color: #414040; }
+
+.site-title { letter-spacing: 3px; }
 
 .site-title, .slash, .page-link, .post-link, .post-title { font-family: 'Lato', sans-serif; }
 
 .post-content { font-family: 'Source Serif Pro', serif; }
+
+/** Site header */
+.site-header { border-bottom: none; }
 
 #posts { font-family: 'Lato', sans-serif; }
 
