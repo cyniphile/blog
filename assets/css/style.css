@@ -494,6 +494,8 @@ table th { text-align: center !important; }
 
 .site-title, .slash, .page-link, .post-link, .post-title { font-family: 'Lato', sans-serif; }
 
+.post-header { margin-bottom: 0px; }
+
 .post-content { font-family: 'Source Serif Pro', serif; }
 
 .site-header { border-bottom: none; }
