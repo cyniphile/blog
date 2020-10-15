@@ -500,6 +500,8 @@ table th { text-align: center !important; }
 
 .site-header { border-bottom: none; }
 
+.site-header hr { width: 40%; margin-left: 30%; margin-right: 30%; }
+
 #posts { font-family: 'Lato', sans-serif; }
 
 .links-wrapper { text-align: center; }
