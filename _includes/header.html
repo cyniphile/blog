@@ -4,11 +4,12 @@
     {%- assign titles_size = site.pages | map: 'title' | join: '' | size -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
     <div>
-       <a class="site-title" href="https://lukeschiefelbein.com">Luke</a>
-       <div style='color: #C33D3D' class="slash">/</div>
-       <div style='color: #CCD537' class="slash">/</div>
-       <div style='color: #3EBEC3' class="slash">/</div>
-       <a class="site-title" rel="author" href="{{ "/" | relative_url }}">blog</a>
+      <a class="site-title" href="https://lukeschiefelbein.com">Luke</a>
+      <div style='color: #C33D3D' class="slash">/</div>
+      <div style='color: #CCD537' class="slash">/</div>
+      <div style='color: #3EBEC3' class="slash">/</div>
+      <a class="site-title" rel="author" href="{{ "/" | relative_url }}">blog</a>
     </div>
   </div>
+  <hr>
 </header>

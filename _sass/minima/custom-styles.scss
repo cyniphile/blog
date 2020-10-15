@@ -1,6 +1,6 @@
 /*-----------------------------------*/
 /*--- IMPORT STYLES FOR FASTPAGES ---*/
-@import "minima/fastpages-styles";   
+@import "minima/fastpages-styles";
 
 
 
@@ -8,68 +8,82 @@
 /*----- ADD YOUR STYLES BELOW -------*/
 
 // If you want to turn off dark background for syntax highlighting, comment or delete the below line.
-@import "minima/fastpages-dracula-highlight"; 
+@import "minima/fastpages-dracula-highlight";
 
-.social-links{
+.social-links {
         padding-top: 15px;
         text-align: center;
         font-size: 20px;
-        color: #414040;    
-        a:link, a:visited {
-            line-height: 1px;
-            font-size: 40px;
-            color: #414040;    
-            padding: 10px;
-            text-decoration: none;
+        color: #414040;
+
+        a:link,
+        a:visited {
+                line-height: 1px;
+                font-size: 40px;
+                color: #414040;
+                padding: 10px;
+                text-decoration: none;
         }
 }
 
-.slash{
+.slash {
         font-size: 1.625rem;
         //padding: 2px;
         float: left;
-        padding-right:2px;
-        margin-right:2px;
-        margin-left:2px;
+        padding-right: 2px;
+        margin-right: 2px;
+        margin-left: 2px;
         letter-spacing: 0px;
 }
 
-.site-title, .slash{
+.site-title,
+.slash {
         margin-top: 10px;
-        padding-right:1px;
+        padding-right: 1px;
         font-weight: 900;
         font-size: 50px;
-        color: #414040;    
+        color: #414040;
 }
 
-.site-title{
+.site-title {
         letter-spacing: 3px;
 }
 
-.site-title, .slash, .page-link, .post-link, .post-title {
+.site-title,
+.slash,
+.page-link,
+.post-link,
+.post-title {
         font-family: 'Lato', sans-serif;
 }
 
-.post-header{
+.post-header {
         margin-bottom: 0px;
 }
+
 .post-content {
         font-family: 'Source Serif Pro', serif;
 }
 
-.site-header { 
-        border-bottom: none; 
+.site-header {
+        border-bottom: none;
+
+        hr {
+                width: 40%;
+                margin-left: 30%;
+                margin-right: 30%;
+        }
 }
 
 #posts {
         font-family: 'Lato', sans-serif;
 }
 
-.links-wrapper{
+.links-wrapper {
         text-align: center;
 }
 
-.site-footer{
+.site-footer {
         width: 100%;
         padding: 5px;
         background: white;
@@ -77,24 +91,25 @@
         bottom: 0;
         color: white;
 }
+
 .site-nav {
         display: inline-block;
-    position: static;
-    float: right;
-    border: none;
-    background-color: inherit;
+        position: static;
+        float: right;
+        border: none;
+        background-color: inherit;
 
-    .page-link {
+        .page-link {
+                font-weight: 900;
+                font-family: 'Lato', sans-serif;
+                line-height: $base-line-height;
+                display: inline;
+                padding: 0;
 
-        font-weight: 900;
-      font-family: 'Lato', sans-serif;
-      line-height: $base-line-height;
-      display: inline;
-      padding: 0;
+                &:not(:last-child) {
+                        margin-right: 20px;
+                }
 
-      &:not(:last-child) {
-        margin-right: 20px;
-      }
-      margin-left: auto;
-    }
+                margin-left: auto;
+        }
 }
