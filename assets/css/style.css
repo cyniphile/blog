@@ -514,4 +514,6 @@ table th { text-align: center !important; }
 
 .site-nav .page-link:not(:last-child) { margin-right: 20px; }
 
+.iframe { border-width: 0; }
+
 /*# sourceMappingURL=style.css.map */
