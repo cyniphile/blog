@@ -516,4 +516,6 @@ table th { text-align: center !important; }
 
 iframe { border-width: 0; }
 
+.holds-the-iframe { background: url("../../images/loading_spinner.gif") center center no-repeat; }
+
 /*# sourceMappingURL=style.css.map */
