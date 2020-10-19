@@ -514,7 +514,7 @@ table th { text-align: center !important; }
 
 .site-nav .page-link:not(:last-child) { margin-right: 20px; }
 
-iframe { border-width: 0; }
+iframe { border-width: 0; width: 1px; min-width: 100%; }
 
 .holds-the-iframe { background: url("../../images/loading_spinner.gif") center center no-repeat; }
 
