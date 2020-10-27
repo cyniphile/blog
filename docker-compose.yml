@@ -23,7 +23,7 @@ services:
 
   watcher:
     <<: *fastpages
-    command: watchmedo shell-command --command /fastpages/action_entrypoint.sh --pattern *.ipynb --recursive --drop
+    command: watchmedo shell-command --command /fastpages/action_entrypoint.sh --ignore-pattern="*_site*" --recursive --drop
     network_mode: host # for GitHub Codespaces https://github.com/features/codespaces/
 
   jekyll:
