@@ -518,4 +518,14 @@ iframe { border-width: 0; width: 1px; min-width: 100%; }
 
 .holds-the-iframe { background: url("../../images/loading_spinner.gif") center center no-repeat; }
 
+table { text-align: center; display: block; float: none; margin: auto; font-family: 'Lato', sans-serif; }
+
+.table { width: 100%; margin: 0 auto; text-align: center; }
+
+th, td { font-size: 20px; }
+
+td.rep { background-color: #8d2626; color: white; }
+
+td.dem { background-color: #2451a3; color: white; }
+
 /*# sourceMappingURL=style.css.map */
