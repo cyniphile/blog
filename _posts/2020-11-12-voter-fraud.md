@@ -72,6 +72,7 @@ The video got a quarter-million views in less than 24 hours. Soon investing lege
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Consider these slides. Worth watching Shiva’s entire presentation for proper context, and deciding for yourself. <a href="https://twitter.com/hashtag/Election2020results?src=hash&amp;ref_src=twsrc%5Etfw">#Election2020results</a> are full of statistical anomalies that do not find easy explanation, but this is one possible explanation. <a href="https://twitter.com/hashtag/Question?src=hash&amp;ref_src=twsrc%5Etfw">#Question</a> <a href="https://twitter.com/hashtag/Election2020?src=hash&amp;ref_src=twsrc%5Etfw">#Election2020</a> <a href="https://t.co/3vpfZzqYUF">pic.twitter.com/3vpfZzqYUF</a></p>&mdash; Michael Burry MD (@michaeljburry) <a href="https://twitter.com/michaeljburry/status/1326416897903128577?ref_src=twsrc%5Etfw">November 11, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+(He deleted these tweets soon after this article's writing)
 
 I was intrigued and went down the rabbit hole myself. To get an idea for Ayyadurai's thesis, you can [watch his video stating at 13:05](https://youtu.be/Ztu5Y5obWPk?t=781), but I'll also explain his setup below. 
 
@@ -94,8 +95,6 @@ For each precinct in a county, they show (2nd column from the left) what percent
 
 Their thesis is that **the straight-ticket voting patterns should be similar to the overall voting patterns**. 
 So in a given precinct, if 60% of the straight-ticket votes were for Trump, Ayyadurai pretty reasonably theorizes that around 60% of the mixed party votes should also go to Trump, giving us a flat horizontal line in our plot. 
-
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">What if <a href="https://twitter.com/hashtag/votingsoftware?src=hash&amp;ref_src=twsrc%5Etfw">#votingsoftware</a> <a href="https://twitter.com/hashtag/algorithms?src=hash&amp;ref_src=twsrc%5Etfw">#algorithms</a> used a <a href="https://twitter.com/hashtag/weightedrace?src=hash&amp;ref_src=twsrc%5Etfw">#weightedrace</a> feature to transfer votes from Trump to Biden as a linear function of % Republicans in a precinct? This is the allegation of Dr. Shiva Ayyadural. Also alleged: code does not &quot;glitch.&quot; <a href="https://twitter.com/hashtag/2020Election?src=hash&amp;ref_src=twsrc%5Etfw">#2020Election</a> <a href="https://t.co/Kg1QpZqPIA">https://t.co/Kg1QpZqPIA</a> <a href="https://t.co/LGYUKRjfok">pic.twitter.com/LGYUKRjfok</a></p>&mdash; Michael Burry MD (@michaeljburry) <a href="https://twitter.com/michaeljburry/status/1326310808599420928?ref_src=twsrc%5Etfw">November 10, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 However, when Ayyadurai looked at the actual data from several Michigan counties, he found something much different: [a steep and highly significant downward trend](https://youtu.be/Ztu5Y5obWPk?t=1404), implying that the more Republican a precinct is, the more it tended to flip toward Biden. 
 
