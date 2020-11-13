@@ -15,7 +15,7 @@ layout: notebook
 _Note: I have never voted in a Presidential election, and am not registered as a member of any political party_
     
         
-"The 2020 election was so...2020", that's the tagline we've settled on as a nation. Joe Biden's margin of victory was paper-thin in key states, often thinner than Trump's margins last election. Of course, those 2016 results were widely claimed to be suspicious, which lead to an investigation that [uncovered interference from](https://www.justice.gov/storage/report.pdf) (but [debunked widely alleged direct collusion with](https://taibbi.substack.com/p/russiagate-is-wmd-times-a-million)) Russia. 
+"The 2020 election was so...2020", that's the tagline we've settled on as a nation. Joe Biden's margin of victory was paper-thin in key states, often thinner than Trump's margins last election. Of course, those 2016 results were widely claimed to be suspicious, which lead to an investigation that [uncovered interference from](https://www.justice.gov/storage/report.pdf) (but [debunked many widely alleged theories about direct collusion with](https://taibbi.substack.com/p/russiagate-is-wmd-times-a-million)) Russia. 
 
 <div class='table'>
 <p><strong>Margin of Victory in Key States</strong></p>
@@ -126,13 +126,13 @@ All of this works the same way for more Democratic precincts; just do the same m
 
 ![]({{ site.baseurl }}/images/all flipping.png)
 
-It's a nice downward sloping line. I've only done three data points, but you can see how the rest of the line fills in depending on how Republican or Democrat a precinct is. You can get a steeper line by increasing the percentage of mixed voters that flip, or shift the line up or down by making the flip percentage assymentical (i.e. 10% of Democrats flip, but only 20% of Republicans do). Add in some random variation, and this is exactly what we're seeing in Michigan. It's theoretically totally normal{% fn 2 %}.
+It's a nice downward sloping line. I've only done three data points, but you can see how the rest of the line fills in depending on how Republican or Democrat a precinct is. You can get a steeper line by increasing the percentage of mixed voters that flip (I used a rate of 20% in the example above), or shift the line up or down by making the flip percentage assymentical (e.g. 20% of Republicans flip, but only 10% of Democrats do). Add in some random variation, and this is exactly what we're seeing in Dr. Shiva's Michigan chart. It's theoretically totally normal{% fn 2 %}.
 
 ## Do Real Elections Actually Work This Way?
 
-So we've got ourselves a theory about why these downward trends might exist, no fraud required. Let's now do what Dr. Shiva didn't do and look at more data. If our theory is right we'd expect most of counties to show this downward trend, and if Dr. Shiva's is right, this downward trend should almost never appear. 
+So we've got ourselves a theory about why these downward trends might exist, no fraud required. Let's now do what Dr. Shiva didn't do and look at more data. If our theory is right, we'd expect most of counties to show this downward trend, and if Dr. Shiva's is right, this downward trend should almost never appear. 
 
-Remember, only a few states do straight-ticket voting. It was either quite a pain or impossible to get at their data. [Ok.gov](http://ok.gov/) didn't seem to work at all, much less have a detailed voting records API. Yikes.
+Remember, only a few states do straight-ticket voting, and it turned out to be either quite a pain or impossible to get at their data. [Ok.gov](http://ok.gov/) didn't seem to work at all, much less have a detailed voting records API. Yikes.
 
 Of course, we do know Michigan's data is available, so lets take the first minimal step of verification Dr. Shiva didn't bother to take: look at the same "suspicious" counties in the 2016 election, when Trump won Michigan. Is 2020 really an anomaly? Let's look at Oakland county in 2016:
 
