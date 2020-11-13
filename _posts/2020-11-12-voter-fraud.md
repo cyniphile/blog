@@ -15,7 +15,7 @@ layout: notebook
 _Note: I have never voted in a Presidential election, and am not registered as a member of any political party_
     
         
-"The 2020 election was so...2020", that's the tagline we've settled on as a nation. Joe Biden's margin of victory was paper-thin in key states, often thinner than Trump's margins last election. Of course, those 2016 results were widely claimed to be suspicious, which lead to an investigation that [uncovered interference from](https://www.justice.gov/storage/report.pdf) (but [debunked widely alleged collusion with](https://taibbi.substack.com/p/russiagate-is-wmd-times-a-million)) Russia. 
+"The 2020 election was so...2020", that's the tagline we've settled on as a nation. Joe Biden's margin of victory was paper-thin in key states, often thinner than Trump's margins last election. Of course, those 2016 results were widely claimed to be suspicious, which lead to an investigation that [uncovered interference from](https://www.justice.gov/storage/report.pdf) (but [debunked widely alleged direct collusion with](https://taibbi.substack.com/p/russiagate-is-wmd-times-a-million)) Russia. 
 
 <div class='table'>
 <p><strong>Margin of Victory in Key States</strong></p>
