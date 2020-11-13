@@ -1,7 +1,7 @@
 ---
 keywords: voting, fraud, election, Trump, 2020
 description: Many Americans believe fraud occurred in the 2020 election, in part due to well-circulated theories on social media. I take a close look at one of the most popular (and seemingly plausible) of these theories.
-title: Which State Commits More Election Fraud Than Michigan (By One Popular Metric)?
+title: The State That Commits More Election Fraud Than Michigan (By One Popular Metric)
 toc: true 
 badges: true
 comments: true
@@ -88,7 +88,7 @@ Ayyadurai's team created a data visualization by plotting the difference between
 |  precinct 1 | 60% Trump | 68% Trump | 8% |
 |  precinct 2 | 50% Trump | 48% Trump | -2%  |
 
-For each precinct in a country, they show (2nd column from the left) what percentage of straight ticket votes went to Trump. Then they calculate how the overall vote went (3rd column from left), and finally look at the difference between the two. They visualize this data with a plot like so (here showing the example data from above):
+For each precinct in a county, they show (2nd column from the left) what percentage of straight ticket votes went to Trump. Then they calculate how the overall vote went (3rd column from left), and finally look at the difference between the two. They visualize this data with a plot like so (here showing the example data from above):
 
 ![]({{ site.baseurl }}/images/example_plot.png)
 
@@ -120,13 +120,13 @@ Say a precinct has 1000 constituents: 800 Republican, 200 Democrat. If 10% of th
 
 ![]({{ site.baseurl }}/images/rep precinct example.png)
            
-Ayyadurai would say here, 60 votes _got moved_ to Biden. But it's actually just that mixed-ticket voters are less likely (by definition) to vote with precinct norms, and will tend to moves overall results back towards the center. 
+Ayyadurai would say here, 60 votes _got moved_ to Biden. But it's actually just that mixed-ticket voters are less likely (by definition) to vote with precinct norms, and will tend to move overall results back towards the center. 
 
 All of this works the same way for more Democratic precincts; just do the same math but switch "Republican" and "Democrat", and "Trump" and "Biden". And if a precinct is split 50/50, there flipping votes net to zero. How does all this look on the precinct plots we've been looking at?
 
 ![]({{ site.baseurl }}/images/all flipping.png)
 
-It's a nice downward sloping line. I've only done three data points, but you can see how the rest of the line fills in depending on how Republican or Democrat a precinct is. You can get a steeper line by increasing the percentage of mixed voters that flip, or shift the line up or down by making the flip percentage assymentical (i.e. 10% of Democrats flip, but only 20% of Republicans do). Add in some random variation, and this is exactly what we're seeing in Michigan. It's theoretically totally normal. 
+It's a nice downward sloping line. I've only done three data points, but you can see how the rest of the line fills in depending on how Republican or Democrat a precinct is. You can get a steeper line by increasing the percentage of mixed voters that flip, or shift the line up or down by making the flip percentage assymentical (i.e. 10% of Democrats flip, but only 20% of Republicans do). Add in some random variation, and this is exactly what we're seeing in Michigan. It's theoretically totally normal{% fn 2 %}.
 
 ## Do Real Elections Actually Work This Way?
 
@@ -149,11 +149,11 @@ It's the same super statistically significant downward linear trend. It's not as
 ![]({{ site.baseurl }}/images/fayette.png "Data: https://www.sos.alabama.gov/alabama-votes/voter/election-data
 ")
 
-Do these charts get your pattern researcher taste-buds salivating? Ready to take to the Twitters and yell fraud? Before you do, I should say this is data from Randoph, Jackson, Walker, Autauga, Geneva, and Fayette counties...in Alabama (2016 election){% fn 2 %}. This is obviously not the first state that comes to mind when you think of election hacking targets; the state hasn't voted for a Democrat president since Jimmy Carter in '76. 
+Do these charts get your pattern researcher taste-buds salivating? Ready to take to the Twitters and yell fraud? Before you do, I should say this is data from Randoph, Jackson, Walker, Autauga, Geneva, and Fayette counties...in Alabama (2016 election){% fn 3 %}. This is obviously not the first state that comes to mind when you think of election hacking targets; the state hasn't voted for a Democrat president since Jimmy Carter in '76. 
 
-I admit, I cherry-picked some of the "worst" counties above, but the same trend holds throughout. Running Ayyadurai's analysis on all Alabama counties in 2016, **70% of them showed a negative, statistically significant slope** (in other words β < 0. p < 0.05). In fact, only 13 of the 67 counties were "normal" by Dr. Shiva's definition, showing no significant trend either way. 
+I admit, I cherry-picked some of the "worst" counties above, but the same trend holds throughout. Running Ayyadurai's analysis on all Alabama counties in 2016, **70% of them showed a negative, statistically significant slope** (in other words β < 0 and p < 0.05). In fact, only 13 of the 67 counties were "normal" by Dr. Shiva's definition, showing no significant trend either way. 
 
-## So...now what?
+## So...Now What?
 
 Now we are at a crossroads. We've got a theory for why such patterns could exist completely legitimately, and the data shows these "suspicious" patterns seem to be the norm. 
 
@@ -163,9 +163,11 @@ I'd go with "there was no fraud" (at least of this kind). Dr. Shiva essentially 
 
 Is Dr. Shiva lying to us then? Probably not. The selection bias he overlooked is easy to miss, and even the best data gurus out there make mistakes in identifying them.
 
-Was Dr. Shiva doing good science and just happened to mess up? No, absolutely not. He and his team didn't do even the most basic checks to support their theory, i.e. the checks I did above with 2016 election data (by myself in less than a day's work). Even so, they decided to go ahead and claim there was a clear sign of fraud in Michigan, and publish to their 200k trusting subscribers. Nothing could be more scientifically irresponsible, especially for a man the claims over and over again to be following the principles of science. Now I'm starting to wonder...did he really invent email?
+Was Dr. Shiva doing good science and just happened to mess up? No, absolutely not. He and his team didn't do even the most basic checks to support their theory, i.e. the checks I did above with 2016 election data (by myself in less than a day's work). Even so, they decided to go ahead and claim there was a clear sign of fraud in Michigan, and publish this to their 200k trusting subscribers. Nothing could be more scientifically irresponsible, especially for a man that claims over and over again to be following the principles of science. Now I'm starting to wonder...did he really invent email?
 
 
 {{ "The invention of email is generally credited to Ray Tomlinson around 1970, though Ayyadurai does hold <a href='https://techland.time.com/2011/11/15/the-man-who-invented-email/'>the first copyright</a> to the term dated 1982." | fndetail: 1 }}
 
-{{ "Alabama was the only state I could find with both straight-ticket voting and (sort of) readily available voting data. 2020 data was not yet available at the time of this writing. If you find more, let me know!" | fndetail: 2 }}
+{{ "A couple big assumption we are making here: 1) that the proportion of split-ticket to mixed-ticket votes is uncorrelated with a precinct's party leaning. 2) that the proportion of voters who flip is uncorrelated with a precinct's party leaning. If either assumption is violated in the right way, you could see flat graphs like Dr. Shiva is showing. Ultimately, this is just one (non-fraud based) explanation, and we simply need to look to the data to see if graphs with lots of slope are the norm or not." | fndetail: 2 }}
+
+{{ "Alabama was the only state I could find with both straight-ticket voting and (sort of) readily available voting data. 2020 data was not yet available at the time of this writing. If you find more, let me know!" | fndetail: 3 }}
