@@ -130,7 +130,7 @@ It's a nice downward sloping line. I've only done three data points, but you can
 
 ## Do Real Elections Actually Work This Way?
 
-So we've got ourselves a theory about why these downward trends might exist, no fraud required. Let's now do what Dr. Shiva didn't do and look at more data. If our theory is right, we'd expect most of counties to show this downward trend, and if Dr. Shiva's is right, this downward trend should almost never appear. 
+So we've got ourselves a theory about why these downward trends might exist, no fraud required. Let's now do what Dr. Shiva didn't do and look at more data. If our theory is right, we'd expect most counties to show this downward trend, and if Dr. Shiva's is right, this downward trend should almost never appear. 
 
 Remember, only a few states do straight-ticket voting, and it turned out to be either quite a pain or impossible to get at their data. [Ok.gov](http://ok.gov/) didn't seem to work at all, much less have a detailed voting records API. Yikes.
 
@@ -168,6 +168,6 @@ Was Dr. Shiva doing good science and just happened to mess up? No, absolutely no
 
 {{ "The invention of email is generally credited to Ray Tomlinson around 1970, though Ayyadurai does hold <a href='https://techland.time.com/2011/11/15/the-man-who-invented-email/'>the first copyright</a> to the term dated 1982." | fndetail: 1 }}
 
-{{ "A couple big assumption we are making here: 1) that the proportion of split-ticket to mixed-ticket votes is uncorrelated with a precinct's party leaning. 2) that the proportion of voters who flip is uncorrelated with a precinct's party leaning. If either assumption is violated in the right way, you could see flat graphs like Dr. Shiva is showing. Ultimately, this is just one (non-fraud based) explanation, and we simply need to look to the data to see if graphs with lots of slope are the norm or not." | fndetail: 2 }}
+{{ "A couple big assumption we are making here: 1) that the ratio of split-ticket/mixed-ticket votes is uncorrelated with a precinct's party leaning. 2) that the proportion of voters who flip is uncorrelated with a precinct's party leaning. If either assumption is violated in the right way, you could see flat graphs like Dr. Shiva is showing. Ultimately, we simply need to look to the data to see if graphs with lots of slope are the norm or not." | fndetail: 2 }}
 
 {{ "Alabama was the only state I could find with both straight-ticket voting and (sort of) readily available voting data. 2020 data was not yet available at the time of this writing. If you find more, let me know!" | fndetail: 3 }}
