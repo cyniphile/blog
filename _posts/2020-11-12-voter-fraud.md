@@ -170,6 +170,6 @@ _Code and data used to generate this analysis can be [found on Github](https://g
 
 {{ "The invention of email is generally credited to Ray Tomlinson around 1970, though Ayyadurai does hold <a href='https://techland.time.com/2011/11/15/the-man-who-invented-email/'>the first copyright</a> to the term dated 1982." | fndetail: 1 }}
 
-{{ "A couple big assumption we are making here: 1) that the ratio of split-ticket/mixed-ticket votes is uncorrelated with a precinct's party leaning. 2) that the proportion of voters who flip is uncorrelated with a precinct's party leaning. If either assumption is violated in the right way, you could see flat graphs like Dr. Shiva is showing. Ultimately, we simply need to look to the data to see if graphs with lots of slope are the norm or not." | fndetail: 2 }}
+{{ "We are making a couple of big assumptions here: 1) that the ratio of split-ticket/mixed-ticket votes is uncorrelated with a precinct's party leaning. 2) that the proportion of voters who flip is uncorrelated with a precinct's party leaning. If either assumption is violated in the right way, you could see flat graphs like Dr. Shiva is showing. Ultimately, we simply need to look to the data to see if graphs with lots of slope are the norm or not." | fndetail: 2 }}
 
 {{ "Alabama was the only state I could find with both straight-ticket voting and (sort of) readily available voting data. 2020 data was not yet available at the time of this writing. If you find more, let me know!" | fndetail: 3 }}
