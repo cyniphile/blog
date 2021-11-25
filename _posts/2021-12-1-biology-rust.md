@@ -35,7 +35,7 @@ Rust is a "low-level language with high-level abstractions." It's supposed to be
 
 Rust is fast partially because it's not garbage collected. Instead, the compiler helps you manually manage memory. To this end it requires you, the programmer, to write some extra bookkeeping annotations that say which functions are using which variables and when (so-called "ownership" with "borrowing" and "lifetimes"). I've seen this called "semiautomatic memory management" (as opposed to C/C++ which are fully manual; the compiler doesn't stop you from making mistakes). This is why people often complain about "fighting the compiler" with Rust: it's always pointing out inconsistencies in your variable management (in addition to all the usual type errors you get from more typical compilers). That said, once something does compile, you should have a memory-safe, robust, and probably very fast program.
 
-There are also other low-level complexities of the language. For example, there is not one `int` type but _eight_, depending on if you want the integer to be signed and how many bits you want to represent it with. You have to understand the basics of stack versus heap memory. Strings are [very complicated](https://fasterthanli.me/articles/working-with-strings-in-rust). And so on.
+There are also other low-level complexities of the language. For example, there is not one `int` type but _eight_, depending on if you want the integer to be signed and how many bits you want to represent it with. One has to understand the basics of stack versus heap memory. Strings are [very complicated](https://fasterthanli.me/articles/working-with-strings-in-rust). And so on.
 
 The [Rust book](https://doc.rust-lang.org/book/) is a great resource for learning the language. Rust has a steep learning curve, but I've also not really done low-level programming before, so a lot of the effort for me was learning _that_. Overall I've found Rust is like bowling with the bumpers: it can be maddening to be always bouncing back and forth down the lane, but eventually I always knock some pins over, as opposed to C++ where I'd probably never trust my code to run in a production environment, especially one as correctness-critical as biology. 
 
@@ -115,7 +115,7 @@ The Python built-in `.replace` function is actually the fastest by far. It's ove
 
 This sort of makes sense since Python's `.replace` is actually just [a highly optimized C function](https://github.com/python/cpython/blob/5f9247e36a0213b0dcfd43533db5cf6570895cfd/Objects/stringlib/transmogrify.h#L678), though it's still surprising that the Rust `.replace` built-in is a lot slower[^2]. 
 
-The same ranking holds true over different sizes of data, though numpy seems to eventually overcome some fixed initialization overhead. 
+The same ranking holds over different sizes of data, though Numpy seems to eventually overcome some fixed initialization overhead. 
 
 ![]({{ site.baseurl }}/images/biology-rust/2021-11-09-17-27-36.png)
 This plot was made using a [`perfplot`](https://github.com/nschloe/perfplot)-based Python script, so the pure Rust functions weren't included.
@@ -168,7 +168,7 @@ def dna_base_complement(base: str) -> str:
         raise Exception("Non-DNA base \"{}\" found.".format(base))
 ```
 
-The Rust implementation is very similar but uses a slightly more functional style (`.fold` instead of an outer `for` loop)[^5].  
+The Rust implementation is very similar but uses a more functional style (`.fold` instead of an outer `for` loop)[^5].  
 
 ``` rust
 #[pyclass]
@@ -222,7 +222,7 @@ pub fn dna_base_complement(base: char) -> char {
 }
 ```
 
-And I also added a small Python wrapper to map the Rust `PalindromeLocation` `struct` to the Python `dataclass`, which adds some more language interface overhead[^8].
+And I also added a small Python wrapper to map the Rust `PalindromeLocation` `struct` to the Python `dataclass`, which adds more language interface overhead[^8].
 
 ``` python
 def find_reverse_palindromes_rs(seq: str) -> List[PalindromeLocation]:
@@ -265,7 +265,7 @@ pub fn dna_base_complement(base: char) -> char {
 
 This Rust little function, when given a DNA base, returns the complementary base. Note I had to name it `dna_base_complement`, because it only works with DNA. If you understand basic biology, you know the output is also DNA (not RNA, or amino acids). However, none of this information is encoded in the logic of the function's code.
 
-I've commented out a line in the code above, and without it, the function actually doesn't compile. Rust checks pattern matches for exhaustivity, and since _any_ UTF-8 `char` can be passed in to this function, I have to also handle the case where the `base` argument happens to not be "A", "C", "T", or "G". 
+I've commented out a line in the code above, and without it, the function actually doesn't compile. Rust checks pattern matches for exhaustivity, and since _any_ UTF-8 `char` can be passed into this function, I have to also handle the case where the `base` argument happens to not be "A", "C", "T", or "G". 
 
 ![]({{ site.baseurl }}/images/biology-rust/2021-11-12-08-45-01.png)
 
@@ -273,7 +273,7 @@ So I have to uncomment that last line, which is a catch-all case. Now if I someh
 
 Using Rust's type system I can completely eliminate the possibility of this kind of error. Specifically, I made use of *Algebraic Data Types* or ADTs.
 
-Algebraic data types are simply types composed of other types. There are two main kinds of ADTs: product types and sum types. A product type is an AND group of types: for example tuples, `struct`s, or Python `dataclass`es. These are pretty obviously useful: sometimes you need to group diversely typed data together under one type, like a `user` type that has  string `name` AND integer `age` fields. 
+Algebraic data types are simply types composed of other types. There are two main kinds of ADTs: product types and sum types. A product type is an AND group of types: for example tuples, `struct`s, or Python `dataclass`es. These are pretty obviously useful: sometimes you need to group diversely typed data together under one type, like a `user` type that has string `name` AND integer `age` fields. 
 
 The other common ADT, the sum type, was new to me, but I've realized it's perhaps even more powerful and interesting[^9]. A sum type is an XOR group of different types, so an instance can be one (and only one) type out of a set of given options. In Rust you create sum types with the `enum` keyword. For example:
 
@@ -307,7 +307,7 @@ We aren't even allowed to wire `complement` up to anything but its proper DNA in
 
 ![]({{ site.baseurl }}/images/biology-rust/2021-11-12-09-40-15.png)
 
-This time I don't have to add the catch-all `_ => panic!("Non-DNA base \"{}\" found.", base)` case because the compiler knows there can only be 4 different `DnaNucleotide` variants, and I've properly handled all of them. While this example might seem trivial, what about, say, a function from codons to amino acids? If I forget or duplicate one of the $4^3$ codons (like I did below), the compiler tells us!
+This time I don't have to add the catch-all `_ => panic!("Non-DNA base \"{}\" found.", base)` case because the compiler knows there can only be four different `DnaNucleotide` variants, and I've properly handled all of them. While this example might seem trivial, what about, say, a function from codons to amino acids? If I forget or duplicate one of the $4^3$ codons (like I did below), the compiler tells us!
 
 ![]({{ site.baseurl }}/images/biology-rust/2021-11-12-09-49-10.png)
 Note in this example I've made use of `RnaNucleotide` and `AminoAcid` enums that I defined [elsewhere in the code](https://github.com/cyniphile/rosalind/blob/main/bio-lib-algebraic-rs/src/lib.rs). 
@@ -316,17 +316,17 @@ This is also useful for easily adapting the software to work with [alloproteins]
 
 ## Speed
 
-Does all this organizational overhead make our code perform less efficiently? Well, theoretically it could actually make it more efficient. Strings (in both Rust and Python) are encoded in UTF-8 which uses a minimum of 8-bits per symbol. DNA has only four symbols and so only really needs 2 bits. Another consideration is parsing: if our DNA is saved in a file (say [FASTA format](https://en.wikipedia.org/wiki/FASTA_format) which just uses character strings), we have to read the file _and_ parse it into our internal enum representation. This means [more code to write](https://github.com/cyniphile/rosalind/blob/99c3fdb60985b09e9418b308d9bdae4a7657ecbe/bio-lib-algebraic-rs/src/lib.rs#L86) and more computational overhead.
+Does all this organizational overhead make our code perform less efficiently? Well, theoretically it could actually make it more efficient. Strings (in both Rust and Python) are encoded in UTF-8 which uses a minimum of 8-bits per symbol. DNA has only four symbols and so only really needs 2 bits per base. Another consideration is parsing: if our DNA is saved in a file (say [FASTA format](https://en.wikipedia.org/wiki/FASTA_format) which just uses character strings), we have to read the file _and_ parse it into our internal enum representation. This means [more code to write](https://github.com/cyniphile/rosalind/blob/99c3fdb60985b09e9418b308d9bdae4a7657ecbe/bio-lib-algebraic-rs/src/lib.rs#L86) and more computational overhead.
 
-I wasn't sure how the trade-off would play out, so I just benchmarked everything using the excellent [`criterion`](https://github.com/bheisler/criterion.rs) package for Rust. I compared the original string `find_reverse_palindromes` function with one that operates on a vector of `DnaNucleotide` enums. I also timed the ADT/enum version both including the string-to-enum parsing step, and a pre-parsed version where I only timed the palindrome searching part. Drumroll... 
+I wasn't sure how the trade-off would play out, so I just benchmarked everything using the excellent [`criterion`](https://github.com/bheisler/criterion.rs) package for Rust. I compared the original string `find_reverse_palindromes` function with one that operates on a vector of `DnaNucleotide` enums. I also timed the ADT/enum version both including the string-to-enum parsing step, and as a pre-parsed version where I only timed the palindrome searching part. Drumroll... 
 
 ![]({{ site.baseurl }}/images/biology-rust/Schermata-2021-11-16-alle-15.51.28.png)
 
-It looks like Rust's promise of "zero-cost abstractions" is is a lie, we are actually getting _negative_ cost abstractions here! Even including the parsing overhead, the ADT-based version of our function is over twice as fast as the string version. The Rust compiler clearly takes advantage of the `enum` representation to make some key optimizations (though I couldn't tell what these optimizations actually are when comparing the [emitted assembly and LLVM IR](https://github.com/cyniphile/rosalind/blob/main/bio-lib-algebraic-rs/asm_output/find_reverse_palindromes_adt.asm) of the two functions. I leave that as an exercise for the reader 😃). 
+It looks like Rust's promise of "zero-cost abstractions" is a lie, we are actually getting _negative_ cost abstractions here! Even including the parsing overhead, the ADT-based version of our function is over twice as fast as the string version. The Rust compiler clearly takes advantage of the `enum` representation to make some key optimizations (though I couldn't tell what these optimizations actually are when comparing the [emitted assembly and LLVM IR](https://github.com/cyniphile/rosalind/blob/main/bio-lib-algebraic-rs/asm_output/find_reverse_palindromes_adt.asm) of the two functions. I leave that as an exercise for the reader 😃). 
 
 ## What About Python?
 
-ADTs sort-of [exist in Python](https://stackoverflow.com/questions/16258553/how-can-i-define-algebraic-data-types-in-python) while using `mypy` typechecking, which even offers hacky-feeling [exhaustivity checks](https://hakibenita.com/python-mypy-exhaustive-checking). However, Enum support is [not quite ready in PyO3](https://github.com/PyO3/pyo3/issues/834), so it's not yet possible to call enum-based Rust functions from Python. To use Rust in Python, we'll just have to wrap our ADT-style function with one that accepts a string and pre-parses it into a vector of enums:
+ADTs sort-of [exist in Python](https://stackoverflow.com/questions/16258553/how-can-i-define-algebraic-data-types-in-python) while using `mypy` typechecking, which even offers hacky-feeling [exhaustivity checks](https://hakibenita.com/python-mypy-exhaustive-checking). However, Enum support is [not quite ready in PyO3](https://github.com/PyO3/pyo3/issues/834), so it's not yet possible to call enum-based Rust functions from Python. To use Rust in Python, we'll just have to wrap our ADT-style function with another function that accepts a string and pre-parses it into a vector of enums:
 
 ```rust
 #[pyfunction]
@@ -344,7 +344,7 @@ While this hack unfortunately sequesters all the nice ADT-related type checks to
 
 So far I've been ignoring one of the most important speed factors in modern programming: parallelism. It's always slightly painful to see my six-core Intel i7 running at, well, 1/6 capacity!
 
-I decided to try out the newish [ray](https://github.com/ray-project/ray) package to parallelize my Python code. I ran into some gotchas, but the [tutorials](https://docs.ray.io/en/latest/ray-design-patterns/fine-grained-tasks.html) were generally helpful. The code for finding reverse palindromes ended up being reasonably similar to the single-threaded version , though it requires an extra parameter `BATCH_SIZE` which needs be tuned to optimally slice up work into chunks:
+I decided to try out the newish [ray](https://github.com/ray-project/ray) package to parallelize my Python code. I ran into some gotchas, but the [tutorials](https://docs.ray.io/en/latest/ray-design-patterns/fine-grained-tasks.html) were generally helpful. The code for finding reverse palindromes ended up being reasonably similar to the single-threaded version, though it requires an extra parameter `BATCH_SIZE` which needs be tuned to optimally slice up work into chunks:
 
 ``` python
 import ray
@@ -433,7 +433,7 @@ It's neat to see the performance gains for each of our "levels" of code improvem
 
 To avoid publication bias, I admit I also tried a "Level 5" improvement by using iterators more heavily. But, well, gather round...
 
-I was discussing this project with a hacker friend who suggested modifying my functions to return iterators instead of vectors. This way, I could chain together various transformation functions lazily and only call `.collect` when needed. The compiler could than optimize the entire chain of transformations top to bottom instead of being forced to return a vector at each step. Since I'm a data scientist with a Spark background, this suggestion made a lot of sense. 
+I was discussing this project with a hacker friend who suggested modifying my functions to return iterators instead of vectors. This way, I could chain together various transformation functions lazily and only call `.collect` when needed. The compiler could then optimize the entire chain of transformations top to bottom instead of being forced to return a vector at each step. Since I'm a data scientist with a Spark background, this suggestion made a lot of sense. 
 
 This is where implementing things in Rust got incredibly tricky, and frankly very unproductive. I had to switch over to Rust's nightly build to be able to make use of experimental typing features. I had to rewrite one line functions as 25-line home-made iterator implementations. I had to really get in the mud with lifetimes, traits, and generics, leading to function signatures like:
 
