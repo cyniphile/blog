@@ -13,9 +13,9 @@ layout: notebook
 
 # Level 1: Python
 
-I want to make the switch from "data science" to bioinformatics. Most of my statistics and machine learning skills will transfer seamlessly to this new domain, but I've also been learning more bioinformatics by doing [Rosalind problems](rosalind.info). Rosalind is like [Project Euler](https://projecteuler.net/archives) with a biology focus. I started out solving the problems in Python, the language I know best.
+I want to make the switch from "data science" to bioinformatics. Most of my statistics and machine learning skills will transfer pretty seamlessly to this new domain, but I've also been learning more bioinformatics by doing [Rosalind problems](rosalind.info). Rosalind is like [Project Euler](https://projecteuler.net/archives) with a biology focus. I started out solving the problems in Python, the language I know best.
 
-For example, in the second Rosalind [problem](http://rosalind.info/problems/rna/) we're asked to write a function that transcribes DNA to RNA:[^3]:
+For example, in the second Rosalind [problem](http://rosalind.info/problems/rna/) we're asked to write a function that transcribes DNA to RNA. Here's my Python solution:[^3]:
 
 ``` python
 # python hand-rolled
@@ -267,7 +267,7 @@ This Rust little function, when given a DNA base, returns the complementary base
 
 I've commented out a line in the code above, and without it, the function actually doesn't compile. Rust checks pattern matches for exhaustivity, and since _any_ UTF-8 `char` can be passed in to this function, I have to also handle the case where the `base` argument happens to not be "A", "C", "T", or "G". 
 
-![](2021-11-12-08-45-01.png)
+![]({{ site.baseurl }}/images/biology-rust/2021-11-12-08-45-01.png)
 
 So I have to uncomment that last line, which is a catch-all case. Now if I somehow give a non-DNA character to our function at runtime, the program will panic (and crash if the panic isn't handled). Say I accidentally pass in the RNA character "U"...uh oh! 
 
@@ -299,7 +299,7 @@ fn complement(base: DnaNucleotide) -> DnaNucleotide {
 }
 ```
 
-Note I dropped the `dna_` prefix from the function name: I know I are getting the complement of DNA because the `base` argument is of `DnaNucleotide` type, and so is the return type. It only accepts DNA, not RNA or "!" or "为" or "🌯". And if I try to pass in a character I get a _compile time_ error:
+Note I dropped the `dna_` prefix from the function name: I know I'm getting the complement of DNA because the `base` argument is of `DnaNucleotide` type, and so is the return type. It only accepts DNA, not RNA or "!" or "为" or "🌯". And if I try to pass in a character I get a _compile time_ error:
 
 ![]({{ site.baseurl }}/images/biology-rust/2021-11-12-09-45-14.png)
 
@@ -312,7 +312,7 @@ This time I don't have to add the catch-all `_ => panic!("Non-DNA base \"{}\" fo
 ![]({{ site.baseurl }}/images/biology-rust/2021-11-12-09-49-10.png)
 Note in this example I've made use of `RnaNucleotide` and `AminoAcid` enums that I defined [elsewhere in the code](https://github.com/cyniphile/rosalind/blob/main/bio-lib-algebraic-rs/src/lib.rs). 
 
-This is useful for easily adapting the software to work in [alloproteins](https://en.wikipedia.org/wiki/Alloprotein#:~:text=An%20alloprotein%20is%20a%20novel,non%2Dnatural%22%20amino%20acids.&text=The%20usual%20mechanisms%2C%20which%20produce,novel%20proteins%20the%20same%20way.) (proteins with non-natural amino acids) or [artificial base pairs](https://en.wikipedia.org/wiki/D5SICS). All I'd have to do is add another symbol to the "AminoAcid" or "DnaNucleotide" enums, and then a bunch of exhaustivity checking compiler errors will pop up wherever I now need to handle the new variant type. 
+This is also useful for easily adapting the software to work with [alloproteins](https://en.wikipedia.org/wiki/Alloprotein#:~:text=An%20alloprotein%20is%20a%20novel,non%2Dnatural%22%20amino%20acids.&text=The%20usual%20mechanisms%2C%20which%20produce,novel%20proteins%20the%20same%20way.) (proteins with non-natural amino acids) or [artificial base pairs](https://en.wikipedia.org/wiki/D5SICS). All I'd have to do is add another symbol to the "AminoAcid" or "DnaNucleotide" enums, and then a bunch of exhaustivity checking compiler errors will pop up wherever I now need to handle the new variant types. 
 
 ## Speed
 
@@ -431,7 +431,7 @@ It's neat to see the performance gains for each of our "levels" of code improvem
 
 # Level 5?
 
-To fall into publication bias, I admit I also tried a "Level 5" improvement by using iterators more heavily. But, well, gather round...
+To avoid publication bias, I admit I also tried a "Level 5" improvement by using iterators more heavily. But, well, gather round...
 
 I was discussing this project with a hacker friend who suggested modifying my functions to return iterators instead of vectors. This way, I could chain together various transformation functions lazily and only call `.collect` when needed. The compiler could than optimize the entire chain of transformations top to bottom instead of being forced to return a vector at each step. Since I'm a data scientist with a Spark background, this suggestion made a lot of sense. 
 
@@ -459,11 +459,11 @@ I guess 4 levels of improvement was enough...
 
 # TL;DR
 
-- Rust is faster than Python, but not for very simple things. 
-- It's pretty easy to call fast Rust functions from Python.
+- Rust is faster than Python, but not necessarily for very simple things. 
+- It's pretty easy and efficient to call fast Rust functions from Python.
 - Use algebraic data types, especially sum types. ADT-based code is cleaner, safer, and faster.
 - Parallelization is important, and it's easy(er) to do in Rust.
-- Benchmark, don't theorize. As is written in the `cargo-flamegraph` readme: ["Humans are terrible at guessing about performance!"](https://github.com/flamegraph-rs/flamegraph#humans-are-terrible-at-guessing-about-performance)
+- Benchmark, don't theorize. ["Humans are terrible at guessing about performance!"](https://github.com/flamegraph-rs/flamegraph#humans-are-terrible-at-guessing-about-performance)
 - Writing Rust simply and idiomatically will probably make the fastest code (as well as the cleanest).
 
 
