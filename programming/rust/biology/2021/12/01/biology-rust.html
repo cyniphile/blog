@@ -196,9 +196,9 @@ window.onload = wrap_img;
 </ul><h1 id="level-1-python">
 <a class="anchor" href="#level-1-python" aria-hidden="true"><span class="octicon octicon-link"></span></a>Level 1: Python</h1>
 
-<p>I want to make the switch from “data science” to bioinformatics. Most of my statistics and machine learning skills will transfer seamlessly to this new domain, but I’ve also been learning more bioinformatics by doing <a href="rosalind.info">Rosalind problems</a>. Rosalind is like <a href="https://projecteuler.net/archives">Project Euler</a> with a biology focus. I started out solving the problems in Python, the language I know best.</p>
+<p>I want to make the switch from “data science” to bioinformatics. Most of my statistics and machine learning skills will transfer pretty seamlessly to this new domain, but I’ve also been learning more bioinformatics by doing <a href="rosalind.info">Rosalind problems</a>. Rosalind is like <a href="https://projecteuler.net/archives">Project Euler</a> with a biology focus. I started out solving the problems in Python, the language I know best.</p>
 
-<p>For example, in the second Rosalind <a href="http://rosalind.info/problems/rna/">problem</a> we’re asked to write a function that transcribes DNA to RNA:<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">1</a></sup>:</p>
+<p>For example, in the second Rosalind <a href="http://rosalind.info/problems/rna/">problem</a> we’re asked to write a function that transcribes DNA to RNA. Here’s my Python solution:<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">1</a></sup>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># python hand-rolled
 </span><span class="k">def</span> <span class="nf">transcribe</span><span class="p">(</span><span class="n">dna</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -443,7 +443,7 @@ This plot was made using a <a href="https://github.com/nschloe/perfplot"><code c
 
 <p>I’ve commented out a line in the code above, and without it, the function actually doesn’t compile. Rust checks pattern matches for exhaustivity, and since <em>any</em> UTF-8 <code class="highlighter-rouge">char</code> can be passed in to this function, I have to also handle the case where the <code class="highlighter-rouge">base</code> argument happens to not be “A”, “C”, “T”, or “G”.</p>
 
-<p><img src="2021-11-12-08-45-01.png" alt=""></p>
+<p><img src="/blog/images/biology-rust/2021-11-12-08-45-01.png" alt=""></p>
 
 <p>So I have to uncomment that last line, which is a catch-all case. Now if I somehow give a non-DNA character to our function at runtime, the program will panic (and crash if the panic isn’t handled). Say I accidentally pass in the RNA character “U”…uh oh!</p>
 
@@ -473,7 +473,7 @@ This plot was made using a <a href="https://github.com/nschloe/perfplot"><code c
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Note I dropped the <code class="highlighter-rouge">dna_</code> prefix from the function name: I know I are getting the complement of DNA because the <code class="highlighter-rouge">base</code> argument is of <code class="highlighter-rouge">DnaNucleotide</code> type, and so is the return type. It only accepts DNA, not RNA or “!” or “为” or “🌯”. And if I try to pass in a character I get a <em>compile time</em> error:</p>
+<p>Note I dropped the <code class="highlighter-rouge">dna_</code> prefix from the function name: I know I’m getting the complement of DNA because the <code class="highlighter-rouge">base</code> argument is of <code class="highlighter-rouge">DnaNucleotide</code> type, and so is the return type. It only accepts DNA, not RNA or “!” or “为” or “🌯”. And if I try to pass in a character I get a <em>compile time</em> error:</p>
 
 <p><img src="/blog/images/biology-rust/2021-11-12-09-45-14.png" alt=""></p>
 
@@ -486,7 +486,7 @@ This plot was made using a <a href="https://github.com/nschloe/perfplot"><code c
 <p><img src="/blog/images/biology-rust/2021-11-12-09-49-10.png" alt="">
 Note in this example I’ve made use of <code class="highlighter-rouge">RnaNucleotide</code> and <code class="highlighter-rouge">AminoAcid</code> enums that I defined <a href="https://github.com/cyniphile/rosalind/blob/main/bio-lib-algebraic-rs/src/lib.rs">elsewhere in the code</a>.</p>
 
-<p>This is useful for easily adapting the software to work in <a href="https://en.wikipedia.org/wiki/Alloprotein#:~:text=An%20alloprotein%20is%20a%20novel,non%2Dnatural%22%20amino%20acids.&amp;text=The%20usual%20mechanisms%2C%20which%20produce,novel%20proteins%20the%20same%20way.">alloproteins</a> (proteins with non-natural amino acids) or <a href="https://en.wikipedia.org/wiki/D5SICS">artificial base pairs</a>. All I’d have to do is add another symbol to the “AminoAcid” or “DnaNucleotide” enums, and then a bunch of exhaustivity checking compiler errors will pop up wherever I now need to handle the new variant type.</p>
+<p>This is also useful for easily adapting the software to work with <a href="https://en.wikipedia.org/wiki/Alloprotein#:~:text=An%20alloprotein%20is%20a%20novel,non%2Dnatural%22%20amino%20acids.&amp;text=The%20usual%20mechanisms%2C%20which%20produce,novel%20proteins%20the%20same%20way.">alloproteins</a> (proteins with non-natural amino acids) or <a href="https://en.wikipedia.org/wiki/D5SICS">artificial base pairs</a>. All I’d have to do is add another symbol to the “AminoAcid” or “DnaNucleotide” enums, and then a bunch of exhaustivity checking compiler errors will pop up wherever I now need to handle the new variant types.</p>
 
 <h2 id="speed">
 <a class="anchor" href="#speed" aria-hidden="true"><span class="octicon octicon-link"></span></a>Speed</h2>
@@ -605,7 +605,7 @@ Remember these results are all calls from Python.</p>
 <h1 id="level-5">
 <a class="anchor" href="#level-5" aria-hidden="true"><span class="octicon octicon-link"></span></a>Level 5?</h1>
 
-<p>To fall into publication bias, I admit I also tried a “Level 5” improvement by using iterators more heavily. But, well, gather round…</p>
+<p>To avoid publication bias, I admit I also tried a “Level 5” improvement by using iterators more heavily. But, well, gather round…</p>
 
 <p>I was discussing this project with a hacker friend who suggested modifying my functions to return iterators instead of vectors. This way, I could chain together various transformation functions lazily and only call <code class="highlighter-rouge">.collect</code> when needed. The compiler could than optimize the entire chain of transformations top to bottom instead of being forced to return a vector at each step. Since I’m a data scientist with a Spark background, this suggestion made a lot of sense.</p>
 
@@ -633,11 +633,11 @@ Remember these results are all calls from Python.</p>
 <a class="anchor" href="#tldr" aria-hidden="true"><span class="octicon octicon-link"></span></a>TL;DR</h1>
 
 <ul>
-  <li>Rust is faster than Python, but not for very simple things.</li>
-  <li>It’s pretty easy to call fast Rust functions from Python.</li>
+  <li>Rust is faster than Python, but not necessarily for very simple things.</li>
+  <li>It’s pretty easy and efficient to call fast Rust functions from Python.</li>
   <li>Use algebraic data types, especially sum types. ADT-based code is cleaner, safer, and faster.</li>
   <li>Parallelization is important, and it’s easy(er) to do in Rust.</li>
-  <li>Benchmark, don’t theorize. As is written in the <code class="highlighter-rouge">cargo-flamegraph</code> readme: <a href="https://github.com/flamegraph-rs/flamegraph#humans-are-terrible-at-guessing-about-performance">“Humans are terrible at guessing about performance!”</a>
+  <li>Benchmark, don’t theorize. <a href="https://github.com/flamegraph-rs/flamegraph#humans-are-terrible-at-guessing-about-performance">“Humans are terrible at guessing about performance!”</a>
 </li>
   <li>Writing Rust simply and idiomatically will probably make the fastest code (as well as the cleanest).</li>
 </ul>
