@@ -196,9 +196,9 @@ window.onload = wrap_img;
 </ul><h1 id="level-1-python">
 <a class="anchor" href="#level-1-python" aria-hidden="true"><span class="octicon octicon-link"></span></a>Level 1: Python</h1>
 
-<p>I want to make the switch from “data science” to bioinformatics. Most of my statistics and machine learning skills will transfer pretty seamlessly to this new domain, but I’ve also been learning more bioinformatics by doing <a href="rosalind.info">Rosalind problems</a>. Rosalind is like <a href="https://projecteuler.net/archives">Project Euler</a> with a biology focus. I started out solving the problems in Python, the language I know best.</p>
+<p>I want to make the switch from “data science” to bioinformatics. Most of my statistics and machine learning skills transfer pretty seamlessly to this new domain, but I’ve also been learning more bioinformatics by doing <a href="https://rosalind.info">Rosalind problems</a>. Rosalind is like <a href="https://projecteuler.net/archives">Project Euler</a> with a biology focus. I started out solving the problems in Python, the language I know best.</p>
 
-<p>For example, in the second Rosalind <a href="http://rosalind.info/problems/rna/">problem</a> we’re asked to write a function that transcribes DNA to RNA. Here’s my Python solution:<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">1</a></sup>:</p>
+<p>For example, in the second Rosalind <a href="http://rosalind.info/problems/rna/">problem</a> we’re asked to write a function that transcribes DNA to RNA. Here’s my Python solution:<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">1</a></sup></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># python hand-rolled
 </span><span class="k">def</span> <span class="nf">transcribe</span><span class="p">(</span><span class="n">dna</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -246,15 +246,15 @@ window.onload = wrap_img;
 <span class="n">dna</span> <span class="o">=</span> <span class="s">"ACTGACTC"</span>
 <span class="n">bio_lib_string_rs</span><span class="o">.</span><span class="n">transcribe</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
 </code></pre></div></div>
-<p>Since the Rust version is callable from Python, I easily wrapped both implementations in <a href="https://github.com/cyniphile/rosalind/blob/main/tests/test_benchmark.py">pytest benchmarks</a>. For the initial test I used a small DNA file of ~1000bp and got the following result:
+<p>Since the Rust version is callable from Python, I could easily wrap both implementations in <a href="https://github.com/cyniphile/rosalind/blob/main/tests/test_benchmark.py">pytest benchmarks</a> for an initial speed test on a ~1000bp DNA string. I got the following results:
 <img src="/blog/images/biology-rust/2021-11-09-17-54-55.png" alt=""></p>
 
-<p>Woot. The Rust version is nearly 20x faster<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">3</a></sup>, including the overhead of parsing the Python DNA string into a Rust string. I also ran a <a href="https://github.com/cyniphile/rosalind/blob/04885c9644e1cff2287a43dce94763e80f482c39/bio-lib-string-rs/src/lib.rs#L195">pure Rust benchmark on the same data</a> (no Python involved) and Rust was over 50x faster than Python.</p>
+<p>Woot. The Rust version is over 17x faster<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">3</a></sup>, including the overhead of parsing the Python DNA string into a Rust string. I also ran a <a href="https://github.com/cyniphile/rosalind/blob/04885c9644e1cff2287a43dce94763e80f482c39/bio-lib-string-rs/src/lib.rs#L195">pure Rust benchmark on the same data</a> (no Python involved) and Rust was over 50x faster than Python.</p>
 
 <h2 id="more-thorough-performance-comparisons">
 <a class="anchor" href="#more-thorough-performance-comparisons" aria-hidden="true"><span class="octicon octicon-link"></span></a>More Thorough Performance Comparisons</h2>
 
-<p>Now some of you Pythonistas might be foaming at the mouth and swearing at your screen right now because the way I implemented <code class="highlighter-rouge">transcribe</code> wasn’t very Pythonic. I hand-rolled the following function:</p>
+<p>Now some of you Pythonistas might be foaming at the mouth and swearing at your screen right now, because the way I implemented <code class="highlighter-rouge">transcribe</code> wasn’t very Pythonic. I hand-rolled the following function:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># python hand-rolled 
 </span><span class="k">def</span> <span class="nf">transcribe</span><span class="p">(</span><span class="n">dna</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -296,12 +296,12 @@ window.onload = wrap_img;
 <p>The same ranking holds over different sizes of data, though Numpy seems to eventually overcome some fixed initialization overhead.</p>
 
 <p><img src="/blog/images/biology-rust/2021-11-09-17-27-36.png" alt="">
-This plot was made using a <a href="https://github.com/nschloe/perfplot"><code class="highlighter-rouge">perfplot</code></a>-based Python script, so the pure Rust functions weren’t included.</p>
+This plot was made using a <a href="https://github.com/nschloe/perfplot">perfplot</a>-based Python script, so the pure Rust functions weren’t included.</p>
 
 <h2 id="actually-speeding-something-up">
 <a class="anchor" href="#actually-speeding-something-up" aria-hidden="true"><span class="octicon octicon-link"></span></a>Actually Speeding Something Up</h2>
 
-<p>I decided to try out a more domain-specific bioinformatics task that isn’t already a Python built-in. This next Rosalind problem is to <a href="http://rosalind.info/problems/revp/">identify reverse palindromes</a> in a DNA sequence, Python answer below<sup id="fnref:6" role="doc-noteref"><a href="#fn:6" class="footnote" rel="footnote">5</a></sup>:</p>
+<p>I decided to try out a more domain-specific bioinformatics task that isn’t already a Python built-in. This next Rosalind problem is to <a href="http://rosalind.info/problems/revp/">identify reverse palindromes</a> in a DNA sequence, Python answer below:<sup id="fnref:6" role="doc-noteref"><a href="#fn:6" class="footnote" rel="footnote">5</a></sup></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">dataclass</span>
 <span class="k">class</span> <span class="nc">PalindromeLocation</span><span class="p">:</span>
@@ -418,7 +418,7 @@ This plot was made using a <a href="https://github.com/nschloe/perfplot"><code c
 
 <p><img src="/blog/images/biology-rust/output.png" alt=""></p>
 
-<p>Rust is about 15x faster than base Python, even with all the conversion overhead! Was it worth the effort? I’d say “yes!” Writing these relatively simple Rust functions is frankly pretty easy (though Rust definitely can get a lot harder). The PyO3 crate makes it pretty straightforward to incrementally add the extra “Rust thrust” (new viral hashtag?) when you need it. This wasn’t without paper-cuts or head-scratchers, but if this was for heavily reused code (perhaps part of some data pipeline), it’s well worth the price of implementation.<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">8</a></sup></p>
+<p>Rust is about 15x faster than base Python, even with all the conversion overhead! Was it worth the effort? I’d say “yes!” Writing these relatively simple Rust functions is frankly pretty easy (though Rust definitely can get a lot harder). The PyO3 crate makes it straightforward to incrementally add the extra “Rust thrust” (new viral hashtag?) when you need it. This wasn’t without paper-cuts or head-scratchers, but if this was for heavily reused code (part of a data pipeline?), it’s well worth the price of implementation.<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">8</a></sup></p>
 
 <hr>
 
@@ -445,15 +445,13 @@ This plot was made using a <a href="https://github.com/nschloe/perfplot"><code c
 
 <p><img src="/blog/images/biology-rust/2021-11-12-08-45-01.png" alt=""></p>
 
-<p>So I have to uncomment that last line, which is a catch-all case. Now if I somehow give a non-DNA character to our function at runtime, the program will panic (and crash if the panic isn’t handled). Say I accidentally pass in the RNA character “U”…uh oh!</p>
-
-<p>Using Rust’s type system I can completely eliminate the possibility of this kind of error. Specifically, I made use of <em>Algebraic Data Types</em> or ADTs.</p>
+<p>So I have to uncomment that last line, which is a catch-all case. Now if I somehow give a non-DNA character to our function at runtime, the program will panic (and crash if the panic isn’t handled). Say I accidentally pass in the RNA character “U”…uh oh! Thankfully I can completely eliminate the possibility of this kind of runtime error using <em>Algebraic Data Types</em> or ADTs.</p>
 
 <p>Algebraic data types are simply types composed of other types. There are two main kinds of ADTs: product types and sum types. A product type is an AND group of types: for example tuples, <code class="highlighter-rouge">struct</code>s, or Python <code class="highlighter-rouge">dataclass</code>es. These are pretty obviously useful: sometimes you need to group diversely typed data together under one type, like a <code class="highlighter-rouge">user</code> type that has string <code class="highlighter-rouge">name</code> AND integer <code class="highlighter-rouge">age</code> fields.</p>
 
 <p>The other common ADT, the sum type, was new to me, but I’ve realized it’s perhaps even more powerful and interesting<sup id="fnref:9" role="doc-noteref"><a href="#fn:9" class="footnote" rel="footnote">9</a></sup>. A sum type is an XOR group of different types, so an instance can be one (and only one) type out of a set of given options. In Rust you create sum types with the <code class="highlighter-rouge">enum</code> keyword. For example:</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">pub</span> <span class="k">enum</span> <span class="n">DnaNucleotide</span> <span class="p">{</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">enum</span> <span class="n">DnaNucleotide</span> <span class="p">{</span>
     <span class="n">A</span><span class="p">,</span>
     <span class="n">C</span><span class="p">,</span>
     <span class="n">G</span><span class="p">,</span>
@@ -477,7 +475,7 @@ This plot was made using a <a href="https://github.com/nschloe/perfplot"><code c
 
 <p><img src="/blog/images/biology-rust/2021-11-12-09-45-14.png" alt=""></p>
 
-<p>We aren’t even allowed to wire <code class="highlighter-rouge">complement</code> up to anything but its proper DNA input. We also get another neat exhaustivity check at compile time if I forget to handle one of the enumerated bases:</p>
+<p>We aren’t even allowed to wire <code class="highlighter-rouge">complement</code> up to anything but its proper DNA input. We also get another neat exhaustivity check at compile time if we forget to handle one of the enumerated bases:</p>
 
 <p><img src="/blog/images/biology-rust/2021-11-12-09-40-15.png" alt=""></p>
 
@@ -493,7 +491,7 @@ Note in this example I’ve made use of <code class="highlighter-rouge">RnaNucle
 
 <p>Does all this organizational overhead make our code perform less efficiently? Well, theoretically it could actually make it more efficient. Strings (in both Rust and Python) are encoded in UTF-8 which uses a minimum of 8-bits per symbol. DNA has only four symbols and so only really needs 2 bits per base. Another consideration is parsing: if our DNA is saved in a file (say <a href="https://en.wikipedia.org/wiki/FASTA_format">FASTA format</a> which just uses character strings), we have to read the file <em>and</em> parse it into our internal enum representation. This means <a href="https://github.com/cyniphile/rosalind/blob/99c3fdb60985b09e9418b308d9bdae4a7657ecbe/bio-lib-algebraic-rs/src/lib.rs#L86">more code to write</a> and more computational overhead.</p>
 
-<p>I wasn’t sure how the trade-off would play out, so I just benchmarked everything using the excellent <a href="https://github.com/bheisler/criterion.rs"><code class="highlighter-rouge">criterion</code></a> package for Rust. I compared the original string <code class="highlighter-rouge">find_reverse_palindromes</code> function with one that operates on a vector of <code class="highlighter-rouge">DnaNucleotide</code> enums. I also timed the ADT/enum version both including the string-to-enum parsing step, and as a pre-parsed version where I only timed the palindrome searching part. Drumroll…</p>
+<p>I wasn’t sure how the trade-off would play out, so I just benchmarked everything using the excellent <a href="https://github.com/bheisler/criterion.rs">criterion</a> package for Rust. I compared the original string <code class="highlighter-rouge">find_reverse_palindromes</code> function with one that operates on a vector of <code class="highlighter-rouge">DnaNucleotide</code> enums. I also timed the ADT/enum version both including the string-to-enum parsing step, and as a pre-parsed version where I only timed the palindrome searching part. Drumroll…</p>
 
 <p><img src="/blog/images/biology-rust/Schermata-2021-11-16-alle-15.51.28.png" alt=""></p>
 
@@ -519,7 +517,7 @@ Note in this example I’ve made use of <code class="highlighter-rouge">RnaNucle
 
 <p>So far I’ve been ignoring one of the most important speed factors in modern programming: parallelism. It’s always slightly painful to see my six-core Intel i7 running at, well, 1/6 capacity!</p>
 
-<p>I decided to try out the newish <a href="https://github.com/ray-project/ray">ray</a> package to parallelize my Python code. I ran into some gotchas, but the <a href="https://docs.ray.io/en/latest/ray-design-patterns/fine-grained-tasks.html">tutorials</a> were generally helpful. The code for finding reverse palindromes ended up being reasonably similar to the single-threaded version, though it requires an extra parameter <code class="highlighter-rouge">BATCH_SIZE</code> which needs be tuned to optimally slice up work into chunks:</p>
+<p>I decided to try out the newish <a href="https://github.com/ray-project/ray">ray</a> package to parallelize my Python code<sup id="fnref:12" role="doc-noteref"><a href="#fn:12" class="footnote" rel="footnote">11</a></sup>.  The code for finding reverse palindromes ended up being reasonably similar to the single-threaded version, though it requires an extra <code class="highlighter-rouge">BATCH_SIZE</code> parameter which needs be tuned to optimally slice up work into chunks:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">ray</span>
 <span class="kn">import</span> <span class="nn">functools</span>
@@ -559,7 +557,7 @@ Note in this example I’ve made use of <code class="highlighter-rouge">RnaNucle
 <p><img src="/blog/images/biology-rust/2021-11-24-16-46-34.png" alt="">
 Yeah baby! All six cores fully engaged sir!</p>
 
-<p>Parallelizing the Rust code turned out to be the first case where implementation is actually easier in Rust than Python thanks to the excellent <a href="https://github.com/rayon-rs/rayon"><code class="highlighter-rouge">rayon</code></a> package:</p>
+<p>Parallelizing the Rust code turned out to be the first case where implementation is actually easier in Rust than in Python thanks to the excellent <a href="https://github.com/rayon-rs/rayon">rayon</a> package:</p>
 
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">pub</span> <span class="k">fn</span> <span class="nf">find_reverse_palindromes_par</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">DNASlice</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">Vec</span><span class="o">&lt;</span><span class="n">PalindromeLocation</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="k">let</span> <span class="n">min_len</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
@@ -589,7 +587,7 @@ Yeah baby! All six cores fully engaged sir!</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>It’s as simple as changing <code class="highlighter-rouge">.iter</code> to <code class="highlighter-rouge">.into_par_iter</code> and adding a <code class="highlighter-rouge">reduce</code> function at the end to stitch together all the asynchronously returned results. Of course, it also needed to be wrapped in similar Python-&gt;string-&gt;enum/ADT wrapper functions to be useable from Python.</p>
+<p>It’s as simple as changing <code class="highlighter-rouge">.iter</code> to <code class="highlighter-rouge">.into_par_iter</code> and adding a <code class="highlighter-rouge">reduce</code> function at the end to stitch together all the asynchronously returned results. Of course, it also needed to be wrapped in similar Python→string→enum/ADT wrapper functions to be useable from Python.</p>
 
 <p>So now it’s time for the final showdown. How do all these “levels” compare speed-wise?</p>
 
@@ -607,7 +605,7 @@ Remember these results are all calls from Python.</p>
 
 <p>To avoid publication bias, I admit I also tried a “Level 5” improvement by using iterators more heavily. But, well, gather round…</p>
 
-<p>I was discussing this project with a hacker friend who suggested modifying my functions to return iterators instead of vectors. This way, I could chain together various transformation functions lazily and only call <code class="highlighter-rouge">.collect</code> when needed. The compiler could then optimize the entire chain of transformations top to bottom instead of being forced to return a vector at each step. Since I’m a data scientist with a Spark background, this suggestion made a lot of sense.</p>
+<p>I was discussing this project with a hacker friend who suggested modifying my functions to return iterators instead of vectors. This way, I could chain together various transformation functions lazily and only call <code class="highlighter-rouge">.collect</code> when needed. The compiler could then optimize the entire chain of transformations top to bottom instead of being forced to collect into vector at each step. Since I’m a data scientist with a Spark background, this suggestion made a lot of sense.</p>
 
 <p>This is where implementing things in Rust got incredibly tricky, and frankly very unproductive. I had to switch over to Rust’s nightly build to be able to make use of experimental typing features. I had to rewrite one line functions as 25-line home-made iterator implementations. I had to really get in the mud with lifetimes, traits, and generics, leading to function signatures like:</p>
 
@@ -619,7 +617,7 @@ Remember these results are all calls from Python.</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>In the end, my code was much <em>less</em> clean, though I could have possibly made it cleaner by using performance-sapping dynamic dispatch<sup id="fnref:11" role="doc-noteref"><a href="#fn:11" class="footnote" rel="footnote">11</a></sup>.</p>
+<p>In the end, my code was much <em>less</em> clean, though I could have possibly made it cleaner by using performance-sapping dynamic dispatch<sup id="fnref:11" role="doc-noteref"><a href="#fn:11" class="footnote" rel="footnote">12</a></sup>.</p>
 
 <p>I should have stopped and benchmarked sooner, but instead I struggled to port the entire set of bioinformatics functions I’d written so far to this iterators based implementation. <a href="https://github.com/cyniphile/rosalind/blob/main/bio-lib-rs/src/lib.rs">The entire monstrosity is available here</a>. And yes, in the end, the code was significantly (~10%) slower. See one benchmark below:</p>
 
@@ -635,12 +633,14 @@ Remember these results are all calls from Python.</p>
 <ul>
   <li>Rust is faster than Python, but not necessarily for very simple things.</li>
   <li>It’s pretty easy and efficient to call fast Rust functions from Python.</li>
-  <li>Use algebraic data types, especially sum types. ADT-based code is cleaner, safer, and faster.</li>
+  <li>Use algebraic data types like <code class="highlighter-rouge">enum</code>s instead of strings. ADT-based code is cleaner, safer, and faster.</li>
   <li>Parallelization is important, and it’s easy(er) to do in Rust.</li>
   <li>Benchmark, don’t theorize. <a href="https://github.com/flamegraph-rs/flamegraph#humans-are-terrible-at-guessing-about-performance">“Humans are terrible at guessing about performance!”</a>
 </li>
-  <li>Writing Rust simply and idiomatically will probably make the fastest code (as well as the cleanest).</li>
+  <li>Writing Rust simply and idiomatically will probably result in the fastest code (as well as the cleanest).</li>
 </ul>
+
+<p>Thanks to <a href="https://github.com/jgavris">@jgavris</a> various tips and pointers.</p>
 
 <h1 id="notes">
 <a class="anchor" href="#notes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notes</h1>
@@ -672,7 +672,7 @@ Remember these results are all calls from Python.</p>
       <p>This was the first time I ran into not-so-nice problems with PyO3. I started with a Rust implementation <a href="https://github.com/cyniphile/rosalind/blob/04885c9644e1cff2287a43dce94763e80f482c39/bio-lib-string-rs/src/lib.rs#L139">nearly identical to the Python one</a> but I ran into a weird GIL deadlock when benchmarking with <code class="highlighter-rouge">perfplot</code> (which apparently does some multithreaded stuff). I managed to resolve this by not having any <code class="highlighter-rouge">mut</code> or borrowed variables in the function body, but this was a quick hack fix. I have not yet gone deep on the <a href="https://pyo3.rs/v0.15.0/types.html?highlight=gil#gil-lifetimes-mutability-and-python-object-types">GIL and mutability</a> w.r.t. PyO3. <a href="#fnref:5" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li id="fn:8" role="doc-endnote">
-      <p>We could define the Python `dataclass <a href="https://depth-first.com/articles/2020/08/10/python-extensions-in-pure-rust-with-pyo3/">purely in Rust</a>, but I wanted to simulate the effect of adding Rust to an existing Python project, where maybe you don’t want to move a class definition to Rust. <a href="#fnref:8" class="reversefootnote" role="doc-backlink">↩</a></p>
+      <p>We could define the Python <code class="highlighter-rouge">dataclass</code> <a href="https://depth-first.com/articles/2020/08/10/python-extensions-in-pure-rust-with-pyo3/">purely in Rust</a>, but I wanted to simulate the effect of adding Rust to an existing Python project, where maybe you don’t want to move a class definition to Rust. <a href="#fnref:8" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li id="fn:4" role="doc-endnote">
       <p>Btw, what about PyPy? I didn’t try it because it still just <a href="https://scikit-learn.org/stable/faq.html#do-you-support-pypy">don’t seem ready</a> as a viable CPython alternative for data science. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">↩</a></p>
@@ -699,6 +699,9 @@ Remember these results are all calls from Python.</p>
 <span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="k">impl</span> <span class="n">Nucleotide</span><span class="p">)</span> <span class="p">{</span><span class="n">s</span><span class="nf">.complement</span><span class="p">();}</span>
 </code></pre></div>      </div>
       <p><a href="#fnref:10" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+    <li id="fn:12" role="doc-endnote">
+      <p>I ran into some gotchas, but the <a href="https://docs.ray.io/en/latest/ray-design-patterns/fine-grained-tasks.html">tutorials</a> were generally helpful. <a href="#fnref:12" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li id="fn:11" role="doc-endnote">
       <p>I ran into basically every problem listed in <a href="https://depth-first.com/articles/2020/06/22/returning-rust-iterators/">this post</a>. <a href="#fnref:11" class="reversefootnote" role="doc-backlink">↩</a></p>
