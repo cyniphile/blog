@@ -13,9 +13,9 @@ layout: notebook
 
 # Level 1: Python
 
-I want to make the switch from "data science" to bioinformatics. Most of my statistics and machine learning skills will transfer pretty seamlessly to this new domain, but I've also been learning more bioinformatics by doing [Rosalind problems](rosalind.info). Rosalind is like [Project Euler](https://projecteuler.net/archives) with a biology focus. I started out solving the problems in Python, the language I know best.
+I want to make the switch from "data science" to bioinformatics. Most of my statistics and machine learning skills transfer pretty seamlessly to this new domain, but I've also been learning more bioinformatics by doing [Rosalind problems](https://rosalind.info). Rosalind is like [Project Euler](https://projecteuler.net/archives) with a biology focus. I started out solving the problems in Python, the language I know best.
 
-For example, in the second Rosalind [problem](http://rosalind.info/problems/rna/) we're asked to write a function that transcribes DNA to RNA. Here's my Python solution:[^3]:
+For example, in the second Rosalind [problem](http://rosalind.info/problems/rna/) we're asked to write a function that transcribes DNA to RNA. Here's my Python solution:[^3]
 
 ``` python
 # python hand-rolled
@@ -64,14 +64,14 @@ import bio_lib_string_rs
 dna = "ACTGACTC"
 bio_lib_string_rs.transcribe(dna)
 ```
-Since the Rust version is callable from Python, I easily wrapped both implementations in [pytest benchmarks](https://github.com/cyniphile/rosalind/blob/main/tests/test_benchmark.py). For the initial test I used a small DNA file of ~1000bp and got the following result:
+Since the Rust version is callable from Python, I could easily wrap both implementations in [pytest benchmarks](https://github.com/cyniphile/rosalind/blob/main/tests/test_benchmark.py) for an initial speed test on a ~1000bp DNA string. I got the following results:
 ![]({{ site.baseurl }}/images/biology-rust/2021-11-09-17-54-55.png)
 
-Woot. The Rust version is nearly 20x faster[^1], including the overhead of parsing the Python DNA string into a Rust string. I also ran a [pure Rust benchmark on the same data](https://github.com/cyniphile/rosalind/blob/04885c9644e1cff2287a43dce94763e80f482c39/bio-lib-string-rs/src/lib.rs#L195) (no Python involved) and Rust was over 50x faster than Python.
+Woot. The Rust version is over 17x faster[^1], including the overhead of parsing the Python DNA string into a Rust string. I also ran a [pure Rust benchmark on the same data](https://github.com/cyniphile/rosalind/blob/04885c9644e1cff2287a43dce94763e80f482c39/bio-lib-string-rs/src/lib.rs#L195) (no Python involved) and Rust was over 50x faster than Python.
 
 ## More Thorough Performance Comparisons
 
-Now some of you Pythonistas might be foaming at the mouth and swearing at your screen right now because the way I implemented `transcribe` wasn't very Pythonic. I hand-rolled the following function:
+Now some of you Pythonistas might be foaming at the mouth and swearing at your screen right now, because the way I implemented `transcribe` wasn't very Pythonic. I hand-rolled the following function:
 
  ``` python
 # python hand-rolled 
@@ -118,11 +118,11 @@ This sort of makes sense since Python's `.replace` is actually just [a highly op
 The same ranking holds over different sizes of data, though Numpy seems to eventually overcome some fixed initialization overhead. 
 
 ![]({{ site.baseurl }}/images/biology-rust/2021-11-09-17-27-36.png)
-This plot was made using a [`perfplot`](https://github.com/nschloe/perfplot)-based Python script, so the pure Rust functions weren't included.
+This plot was made using a [perfplot](https://github.com/nschloe/perfplot)-based Python script, so the pure Rust functions weren't included.
 
 ## Actually Speeding Something Up
 
-I decided to try out a more domain-specific bioinformatics task that isn't already a Python built-in. This next Rosalind problem is to [identify reverse palindromes](http://rosalind.info/problems/revp/) in a DNA sequence, Python answer below[^6]:
+I decided to try out a more domain-specific bioinformatics task that isn't already a Python built-in. This next Rosalind problem is to [identify reverse palindromes](http://rosalind.info/problems/revp/) in a DNA sequence, Python answer below:[^6]
 
 ``` python
 @dataclass
@@ -242,7 +242,7 @@ How did things pan out this time?
 
 ![]({{ site.baseurl }}/images/biology-rust/output.png)
 
-Rust is about 15x faster than base Python, even with all the conversion overhead! Was it worth the effort? I'd say "yes!" Writing these relatively simple Rust functions is frankly pretty easy (though Rust definitely can get a lot harder). The PyO3 crate makes it pretty straightforward to incrementally add the extra "Rust thrust" (new viral hashtag?) when you need it. This wasn't without paper-cuts or head-scratchers, but if this was for heavily reused code (perhaps part of some data pipeline), it's well worth the price of implementation.[^4] 
+Rust is about 15x faster than base Python, even with all the conversion overhead! Was it worth the effort? I'd say "yes!" Writing these relatively simple Rust functions is frankly pretty easy (though Rust definitely can get a lot harder). The PyO3 crate makes it straightforward to incrementally add the extra "Rust thrust" (new viral hashtag?) when you need it. This wasn't without paper-cuts or head-scratchers, but if this was for heavily reused code (part of a data pipeline?), it's well worth the price of implementation.[^4] 
 
 ----------------------------
 
@@ -269,16 +269,14 @@ I've commented out a line in the code above, and without it, the function actual
 
 ![]({{ site.baseurl }}/images/biology-rust/2021-11-12-08-45-01.png)
 
-So I have to uncomment that last line, which is a catch-all case. Now if I somehow give a non-DNA character to our function at runtime, the program will panic (and crash if the panic isn't handled). Say I accidentally pass in the RNA character "U"...uh oh! 
-
-Using Rust's type system I can completely eliminate the possibility of this kind of error. Specifically, I made use of *Algebraic Data Types* or ADTs.
+So I have to uncomment that last line, which is a catch-all case. Now if I somehow give a non-DNA character to our function at runtime, the program will panic (and crash if the panic isn't handled). Say I accidentally pass in the RNA character "U"...uh oh! Thankfully I can completely eliminate the possibility of this kind of runtime error using *Algebraic Data Types* or ADTs.
 
 Algebraic data types are simply types composed of other types. There are two main kinds of ADTs: product types and sum types. A product type is an AND group of types: for example tuples, `struct`s, or Python `dataclass`es. These are pretty obviously useful: sometimes you need to group diversely typed data together under one type, like a `user` type that has string `name` AND integer `age` fields. 
 
 The other common ADT, the sum type, was new to me, but I've realized it's perhaps even more powerful and interesting[^9]. A sum type is an XOR group of different types, so an instance can be one (and only one) type out of a set of given options. In Rust you create sum types with the `enum` keyword. For example:
 
 ``` rust
-pub enum DnaNucleotide {
+enum DnaNucleotide {
     A,
     C,
     G,
@@ -303,7 +301,7 @@ Note I dropped the `dna_` prefix from the function name: I know I'm getting the 
 
 ![]({{ site.baseurl }}/images/biology-rust/2021-11-12-09-45-14.png)
 
-We aren't even allowed to wire `complement` up to anything but its proper DNA input. We also get another neat exhaustivity check at compile time if I forget to handle one of the enumerated bases:
+We aren't even allowed to wire `complement` up to anything but its proper DNA input. We also get another neat exhaustivity check at compile time if we forget to handle one of the enumerated bases:
 
 ![]({{ site.baseurl }}/images/biology-rust/2021-11-12-09-40-15.png)
 
@@ -318,7 +316,7 @@ This is also useful for easily adapting the software to work with [alloproteins]
 
 Does all this organizational overhead make our code perform less efficiently? Well, theoretically it could actually make it more efficient. Strings (in both Rust and Python) are encoded in UTF-8 which uses a minimum of 8-bits per symbol. DNA has only four symbols and so only really needs 2 bits per base. Another consideration is parsing: if our DNA is saved in a file (say [FASTA format](https://en.wikipedia.org/wiki/FASTA_format) which just uses character strings), we have to read the file _and_ parse it into our internal enum representation. This means [more code to write](https://github.com/cyniphile/rosalind/blob/99c3fdb60985b09e9418b308d9bdae4a7657ecbe/bio-lib-algebraic-rs/src/lib.rs#L86) and more computational overhead.
 
-I wasn't sure how the trade-off would play out, so I just benchmarked everything using the excellent [`criterion`](https://github.com/bheisler/criterion.rs) package for Rust. I compared the original string `find_reverse_palindromes` function with one that operates on a vector of `DnaNucleotide` enums. I also timed the ADT/enum version both including the string-to-enum parsing step, and as a pre-parsed version where I only timed the palindrome searching part. Drumroll... 
+I wasn't sure how the trade-off would play out, so I just benchmarked everything using the excellent [criterion](https://github.com/bheisler/criterion.rs) package for Rust. I compared the original string `find_reverse_palindromes` function with one that operates on a vector of `DnaNucleotide` enums. I also timed the ADT/enum version both including the string-to-enum parsing step, and as a pre-parsed version where I only timed the palindrome searching part. Drumroll... 
 
 ![]({{ site.baseurl }}/images/biology-rust/Schermata-2021-11-16-alle-15.51.28.png)
 
@@ -344,7 +342,7 @@ While this hack unfortunately sequesters all the nice ADT-related type checks to
 
 So far I've been ignoring one of the most important speed factors in modern programming: parallelism. It's always slightly painful to see my six-core Intel i7 running at, well, 1/6 capacity!
 
-I decided to try out the newish [ray](https://github.com/ray-project/ray) package to parallelize my Python code. I ran into some gotchas, but the [tutorials](https://docs.ray.io/en/latest/ray-design-patterns/fine-grained-tasks.html) were generally helpful. The code for finding reverse palindromes ended up being reasonably similar to the single-threaded version, though it requires an extra parameter `BATCH_SIZE` which needs be tuned to optimally slice up work into chunks:
+I decided to try out the newish [ray](https://github.com/ray-project/ray) package to parallelize my Python code[^12].  The code for finding reverse palindromes ended up being reasonably similar to the single-threaded version, though it requires an extra `BATCH_SIZE` parameter which needs be tuned to optimally slice up work into chunks:
 
 ``` python
 import ray
@@ -385,7 +383,7 @@ Now let's run this and take a look at our CPU monitor:
 ![]({{ site.baseurl }}/images/biology-rust/2021-11-24-16-46-34.png)
 Yeah baby! All six cores fully engaged sir!
 
-Parallelizing the Rust code turned out to be the first case where implementation is actually easier in Rust than Python thanks to the excellent [`rayon`](https://github.com/rayon-rs/rayon) package:
+Parallelizing the Rust code turned out to be the first case where implementation is actually easier in Rust than in Python thanks to the excellent [rayon](https://github.com/rayon-rs/rayon) package:
 
 ```rust
 pub fn find_reverse_palindromes_par(seq: &DNASlice) -> Vec<PalindromeLocation> {
@@ -416,7 +414,7 @@ pub fn find_reverse_palindromes_par(seq: &DNASlice) -> Vec<PalindromeLocation> {
 }
 ```
 
-It's as simple as changing `.iter` to `.into_par_iter` and adding a `reduce` function at the end to stitch together all the asynchronously returned results. Of course, it also needed to be wrapped in similar Python->string->enum/ADT wrapper functions to be useable from Python.
+It's as simple as changing `.iter` to `.into_par_iter` and adding a `reduce` function at the end to stitch together all the asynchronously returned results. Of course, it also needed to be wrapped in similar Python→string→enum/ADT wrapper functions to be useable from Python.
 
 So now it's time for the final showdown. How do all these "levels" compare speed-wise?
 
@@ -433,7 +431,7 @@ It's neat to see the performance gains for each of our "levels" of code improvem
 
 To avoid publication bias, I admit I also tried a "Level 5" improvement by using iterators more heavily. But, well, gather round...
 
-I was discussing this project with a hacker friend who suggested modifying my functions to return iterators instead of vectors. This way, I could chain together various transformation functions lazily and only call `.collect` when needed. The compiler could then optimize the entire chain of transformations top to bottom instead of being forced to return a vector at each step. Since I'm a data scientist with a Spark background, this suggestion made a lot of sense. 
+I was discussing this project with a hacker friend who suggested modifying my functions to return iterators instead of vectors. This way, I could chain together various transformation functions lazily and only call `.collect` when needed. The compiler could then optimize the entire chain of transformations top to bottom instead of being forced to collect into vector at each step. Since I'm a data scientist with a Spark background, this suggestion made a lot of sense. 
 
 This is where implementing things in Rust got incredibly tricky, and frankly very unproductive. I had to switch over to Rust's nightly build to be able to make use of experimental typing features. I had to rewrite one line functions as 25-line home-made iterator implementations. I had to really get in the mud with lifetimes, traits, and generics, leading to function signatures like:
 
@@ -461,11 +459,12 @@ I guess 4 levels of improvement was enough...
 
 - Rust is faster than Python, but not necessarily for very simple things. 
 - It's pretty easy and efficient to call fast Rust functions from Python.
-- Use algebraic data types, especially sum types. ADT-based code is cleaner, safer, and faster.
+- Use algebraic data types like `enum`s instead of strings. ADT-based code is cleaner, safer, and faster.
 - Parallelization is important, and it's easy(er) to do in Rust.
 - Benchmark, don't theorize. ["Humans are terrible at guessing about performance!"](https://github.com/flamegraph-rs/flamegraph#humans-are-terrible-at-guessing-about-performance)
-- Writing Rust simply and idiomatically will probably make the fastest code (as well as the cleanest).
+- Writing Rust simply and idiomatically will probably result in the fastest code (as well as the cleanest).
 
+Thanks to [@jgavris](https://github.com/jgavris) various tips and pointers. 
 
 # Notes 
 [^3]: DNA sequence data are stored as the coding strand (not the template strand), so "transcription" really does mean "replace T with U" not "find the RNA complement strand"
@@ -479,7 +478,7 @@ I guess 4 levels of improvement was enough...
 
 [^2]: Perhaps this is because CPython is compiled with gcc, [which can sometimes emit faster instructions than Rust's LLVM-based compiler](https://news.ycombinator.com/item?id=20944403). Or perhaps something else; I didn't look into it too closely.
 
-[^8]: We could define the Python `dataclass [purely in Rust](https://depth-first.com/articles/2020/08/10/python-extensions-in-pure-rust-with-pyo3/), but I wanted to simulate the effect of adding Rust to an existing Python project, where maybe you don't want to move a class definition to Rust. 
+[^8]: We could define the Python `dataclass` [purely in Rust](https://depth-first.com/articles/2020/08/10/python-extensions-in-pure-rust-with-pyo3/), but I wanted to simulate the effect of adding Rust to an existing Python project, where maybe you don't want to move a class definition to Rust. 
 
 [^6]: Yes, I know, this is not the best algorithm. That's not the point. The point is to compare the same algorithm in Rust and Python. Side note: I wanted to try out Python 3.10's new [pattern matching](https://www.python.org/dev/peps/pep-0636/), but I couldn't install some dependencies (SciPy), so I had to go back to version 3.9.
 
@@ -506,6 +505,8 @@ I guess 4 levels of improvement was enough...
 
     fn foo(s: impl Nucleotide) {s.complement();}
     ```
+
+[^12]: I ran into some gotchas, but the [tutorials](https://docs.ray.io/en/latest/ray-design-patterns/fine-grained-tasks.html) were generally helpful.
 
 [^11]:  I ran into basically every problem listed in [this post](https://depth-first.com/articles/2020/06/22/returning-rust-iterators/).
  
