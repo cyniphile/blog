@@ -13,7 +13,7 @@ layout: notebook
 
 # Level 1: Python
 
-I want to make the switch from "data science" to bioinformatics. Most of my statistics and machine learning skills transfer pretty seamlessly to this new domain, but I've also been learning more bioinformatics by doing [Rosalind problems](https://rosalind.info). Rosalind is like [Project Euler](https://projecteuler.net/archives) with a biology focus. I started out solving the problems in Python, the language I know best.
+I want to make the switch from "data science" to bioinformatics. While most of my statistics and machine learning skills transfer pretty seamlessly to this new domain, I've also been learning more bioinformatics by doing [Rosalind problems](https://rosalind.info/). Rosalind is like [Project Euler](https://projecteuler.net/archives) with a biology focus. I started out solving the problems in Python, the language I know best.
 
 For example, in the second Rosalind [problem](http://rosalind.info/problems/rna/) we're asked to write a function that transcribes DNA to RNA. Here's my Python solution:[^3]
 
@@ -458,7 +458,7 @@ I guess 4 levels of improvement was enough...
 # TL;DR
 
 - Rust is faster than Python, but not necessarily for very simple things. 
-- It's pretty easy and efficient to call fast Rust functions from Python.
+- It's pretty easy to incrementally add fast Rust functions to an existing Python codebase.
 - Use algebraic data types like `enum`s instead of strings. ADT-based code is cleaner, safer, and faster.
 - Parallelization is important, and it's easy(er) to do in Rust.
 - Benchmark, don't theorize. ["Humans are terrible at guessing about performance!"](https://github.com/flamegraph-rs/flamegraph#humans-are-terrible-at-guessing-about-performance)
