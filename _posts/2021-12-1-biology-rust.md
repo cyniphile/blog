@@ -464,7 +464,7 @@ I guess 4 levels of improvement was enough...
 - Benchmark, don't theorize. ["Humans are terrible at guessing about performance!"](https://github.com/flamegraph-rs/flamegraph#humans-are-terrible-at-guessing-about-performance)
 - Writing Rust simply and idiomatically will probably result in the fastest code (as well as the cleanest).
 
-Thanks to [@jgavris](https://github.com/jgavris) various tips and pointers. 
+Special thanks to [@jgavris](https://github.com/jgavris) of [rs-git-fsmonitor](https://github.com/jgavris/rs-git-fsmonitor) fame for various tips and pointers on this post.
 
 # Notes 
 [^3]: DNA sequence data are stored as the coding strand (not the template strand), so "transcription" really does mean "replace T with U" not "find the RNA complement strand"
