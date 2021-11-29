@@ -342,7 +342,7 @@ While this hack unfortunately sequesters all the nice ADT-related type checks to
 
 So far I've been ignoring one of the most important speed factors in modern programming: parallelism. It's always slightly painful to see my six-core Intel i7 running at, well, 1/6 capacity!
 
-I decided to try out the newish [ray](https://github.com/ray-project/ray) package to parallelize my Python code[^12].  The code for finding reverse palindromes ended up being reasonably similar to the single-threaded version, though it requires an extra `BATCH_SIZE` parameter which needs be tuned to optimally slice up work into chunks:
+I decided to try out the newish [ray](https://github.com/ray-project/ray) package to parallelize my Python function[^12].  The code for finding reverse palindromes ended up being reasonably similar to the single-threaded version, though it requires an extra `BATCH_SIZE` parameter which needs be tuned to optimally slice up work into chunks:
 
 ``` python
 import ray
@@ -351,11 +351,11 @@ import operator
 
 
 def find_reverse_palindromes_par(seq: str) -> List[PalindromeLocation]:
+    BATCH_SIZE = 100
     min_len = 4
     max_len = 12
     locations = []
     ray_seq = ray.put(seq)  # type: ignore
-    BATCH_SIZE = 100
 
     @ray.remote  # type: ignore
     def is_palindrome(i: int) -> List[PalindromeLocation]:
@@ -414,14 +414,14 @@ pub fn find_reverse_palindromes_par(seq: &DNASlice) -> Vec<PalindromeLocation> {
 }
 ```
 
-It's as simple as changing `.iter` to `.into_par_iter` and adding a `reduce` function at the end to stitch together all the asynchronously returned results. Of course, it also needed to be wrapped in similar Python→string→enum/ADT wrapper functions to be useable from Python.
+It's as simple as changing `.iter` to `.into_par_iter` and adding a `.reduce` function at the end to stitch together all the asynchronously returned results. Of course, it also needed to be wrapped in similar Python→string→enum/ADT wrapper functions to be useable from Python.
 
 So now it's time for the final showdown. How do all these "levels" compare speed-wise?
 
 ![]({{ site.baseurl }}/images/biology-rust/2021-11-23-22-01-06.png)
 Remember these results are all calls from Python. 
 
-While both parallel implementations are slower for smaller inputs (as expected), the Python version is _much_ slower, and it eventually returns to being slower than sequential Python. This was because the `BATCH_SIZE` parameter needed some tuning, and after some tedious brute force experimentation, I ended up finding a slightly better value (that was still slower than single-threaded Rust). However Rust's `rayon` performed excellently out of the box thanks to it's built-in dynamic performance tuning.  
+While both parallel implementations are slower for smaller inputs (as expected), the Python version is _much_ slower, and it eventually returns to being slower than sequential Python. This was because the `BATCH_SIZE` parameter needed some tuning, and after some tedious brute force experimentation, I ended up finding a slightly better value (that was still slower than single-threaded Rust). However Rust's `rayon` performed excellently out of the box thanks to its built-in dynamic performance tuning.  
 
 It's neat to see the performance gains for each of our "levels" of code improvement. In the end, I made my code safer, better organized, _and_ faster by nearly two orders of magnitude. The overhead of learning Rust is certainly high, but hey, I'm already over that hump! 
 
