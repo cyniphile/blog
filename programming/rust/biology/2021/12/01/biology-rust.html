@@ -517,7 +517,7 @@ Note in this example I’ve made use of <code class="highlighter-rouge">RnaNucle
 
 <p>So far I’ve been ignoring one of the most important speed factors in modern programming: parallelism. It’s always slightly painful to see my six-core Intel i7 running at, well, 1/6 capacity!</p>
 
-<p>I decided to try out the newish <a href="https://github.com/ray-project/ray">ray</a> package to parallelize my Python code<sup id="fnref:12" role="doc-noteref"><a href="#fn:12" class="footnote" rel="footnote">11</a></sup>.  The code for finding reverse palindromes ended up being reasonably similar to the single-threaded version, though it requires an extra <code class="highlighter-rouge">BATCH_SIZE</code> parameter which needs be tuned to optimally slice up work into chunks:</p>
+<p>I decided to try out the newish <a href="https://github.com/ray-project/ray">ray</a> package to parallelize my Python function<sup id="fnref:12" role="doc-noteref"><a href="#fn:12" class="footnote" rel="footnote">11</a></sup>.  The code for finding reverse palindromes ended up being reasonably similar to the single-threaded version, though it requires an extra <code class="highlighter-rouge">BATCH_SIZE</code> parameter which needs be tuned to optimally slice up work into chunks:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">ray</span>
 <span class="kn">import</span> <span class="nn">functools</span>
@@ -525,12 +525,12 @@ Note in this example I’ve made use of <code class="highlighter-rouge">RnaNucle
 
 
 <span class="k">def</span> <span class="nf">find_reverse_palindromes_par</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PalindromeLocation</span><span class="p">]:</span>
+    <span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">100</span>
     <span class="n">min_len</span> <span class="o">=</span> <span class="mi">4</span>
     <span class="n">max_len</span> <span class="o">=</span> <span class="mi">12</span>
     <span class="n">locations</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">ray_seq</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>  <span class="c1"># type: ignore
-</span>    <span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">100</span>
-
+</span>
     <span class="o">@</span><span class="n">ray</span><span class="o">.</span><span class="n">remote</span>  <span class="c1"># type: ignore
 </span>    <span class="k">def</span> <span class="nf">is_palindrome</span><span class="p">(</span><span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PalindromeLocation</span><span class="p">]:</span>
         <span class="n">seq</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ray_seq</span><span class="p">)</span>  <span class="c1"># type: ignore
@@ -587,14 +587,14 @@ Yeah baby! All six cores fully engaged sir!</p>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>It’s as simple as changing <code class="highlighter-rouge">.iter</code> to <code class="highlighter-rouge">.into_par_iter</code> and adding a <code class="highlighter-rouge">reduce</code> function at the end to stitch together all the asynchronously returned results. Of course, it also needed to be wrapped in similar Python→string→enum/ADT wrapper functions to be useable from Python.</p>
+<p>It’s as simple as changing <code class="highlighter-rouge">.iter</code> to <code class="highlighter-rouge">.into_par_iter</code> and adding a <code class="highlighter-rouge">.reduce</code> function at the end to stitch together all the asynchronously returned results. Of course, it also needed to be wrapped in similar Python→string→enum/ADT wrapper functions to be useable from Python.</p>
 
 <p>So now it’s time for the final showdown. How do all these “levels” compare speed-wise?</p>
 
 <p><img src="/blog/images/biology-rust/2021-11-23-22-01-06.png" alt="">
 Remember these results are all calls from Python.</p>
 
-<p>While both parallel implementations are slower for smaller inputs (as expected), the Python version is <em>much</em> slower, and it eventually returns to being slower than sequential Python. This was because the <code class="highlighter-rouge">BATCH_SIZE</code> parameter needed some tuning, and after some tedious brute force experimentation, I ended up finding a slightly better value (that was still slower than single-threaded Rust). However Rust’s <code class="highlighter-rouge">rayon</code> performed excellently out of the box thanks to it’s built-in dynamic performance tuning.</p>
+<p>While both parallel implementations are slower for smaller inputs (as expected), the Python version is <em>much</em> slower, and it eventually returns to being slower than sequential Python. This was because the <code class="highlighter-rouge">BATCH_SIZE</code> parameter needed some tuning, and after some tedious brute force experimentation, I ended up finding a slightly better value (that was still slower than single-threaded Rust). However Rust’s <code class="highlighter-rouge">rayon</code> performed excellently out of the box thanks to its built-in dynamic performance tuning.</p>
 
 <p>It’s neat to see the performance gains for each of our “levels” of code improvement. In the end, I made my code safer, better organized, <em>and</em> faster by nearly two orders of magnitude. The overhead of learning Rust is certainly high, but hey, I’m already over that hump!</p>
 
