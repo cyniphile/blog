@@ -13,7 +13,7 @@ layout: notebook
 
 # Level 1: Python
 
-I want to make the switch from "data science" to bioinformatics. While most of my statistics and machine learning skills transfer pretty seamlessly to this new domain, I've also been learning more bioinformatics by doing [Rosalind problems](https://rosalind.info/). Rosalind is like [Project Euler](https://projecteuler.net/archives) with a biology focus. I started out solving the problems in Python, the language I know best.
+Lately I've been getting interested in bioinformatics. While most of my statistics and machine learning skills transfer pretty seamlessly to this new domain, I've also been learning more bioinformatics by doing [Rosalind problems](https://rosalind.info/). Rosalind is like [Project Euler](https://projecteuler.net/archives) with a biology focus. I started out solving the problems in Python, the language I know best.
 
 For example, in the second Rosalind [problem](http://rosalind.info/problems/rna/) we're asked to write a function that transcribes DNA to RNA. Here's my Python solution:[^3]
 

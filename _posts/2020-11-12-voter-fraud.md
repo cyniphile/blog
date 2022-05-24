@@ -62,7 +62,7 @@ This time it's the same story, with the party tables turned and the focus on int
 
 Given the focus on fraud, this election has been busy for hordes of indie data pundits (like me). Some are making [Deep State connections](https://twitter.com/monkeyjones1984/status/1325596977602519040?s=10) to hacked election machines, often in connection to the so-called [Hammer and Scorecard](https://joannenova.com.au/2020/11/cia-programs-designed-to-interfere-in-elections-hammer-and-scorecard/) CIA election interference software that we've allegedly turned against ourselves. Others are just hunting for [oddities and anomalies]( https://twitter.com/VC4351/status/1325554847031025665). One analyst made minor news when he raised over $200k via GoFundMe for investigating voting irregularities, only to have [GoFundMe cancel his campaign](https://www.politico.com/news/2020/11/06/gofundme-removes-conservative-fundraiser-election-misinformation-434800) citing that he was engaging in “attempts to spread misleading information."
 
-One data investigation that caught my eye in particular (and the eyes of many others) was that of [Dr. Shiva Ayyadurai](https://en.wikipedia.org/wiki/Shiva_Ayyadurai). He claims to have invented email{% fn 1 %}, ran as a Republican for US senator in MA (but lost in primaries), and has almost 200k YouTube subscribers. His latest hour-long video was about a case of possible election fraud in Michigan. 
+One data investigation that caught my eye in particular (and the eyes of many others) was that of [Dr. Shiva Ayyadurai](https://en.wikipedia.org/wiki/Shiva_Ayyadurai). Dr. Ayyadurai claims to have invented email{% fn 1 %}, ran as a Republican for US senator in MA (but lost in primaries), and has almost 200k YouTube subscribers. His latest hour-long video was about a case of possible election fraud in Michigan. 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Ztu5Y5obWPk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -84,10 +84,10 @@ Ayyadurai's analysis centers around an odd aspect of Michigan voting: [straight 
 
 Ayyadurai's team created a data visualization by plotting the difference between the straight-ticket voting compared with the regular candidate-by-candidate voting (which I'll refer to as "mixed-ticket", since you can mix which parties you vote for when voting in this way). First, they organized precinct voting data as follows:
 
-|  Precinct | Straight Ticket Votes| Overall Votes (Straight and Mixed Ticket)| Difference, Overall vs Straight Ticket|
-| --- | --- | --- | --- |
-|  precinct 1 | 60% Trump | 68% Trump | 8% |
-|  precinct 2 | 50% Trump | 48% Trump | -2%  |
+| Precinct   | Straight Ticket Votes | Overall Votes (Straight and Mixed Ticket) | Difference, Overall vs Straight Ticket |
+| ---------- | --------------------- | ----------------------------------------- | -------------------------------------- |
+| precinct 1 | 60% Trump             | 68% Trump                                 | 8%                                     |
+| precinct 2 | 50% Trump             | 48% Trump                                 | -2%                                    |
 
 For each precinct in a county, they show (2nd column from the left) what percentage of straight ticket votes went to Trump. Then they calculate how the overall vote went (3rd column from left), and finally look at the difference between the two. They visualize this data with a plot like so (here showing the example data from above):
 
