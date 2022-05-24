@@ -3,9 +3,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="twitter:card" content="summary" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+  <meta name="twitter:card" content="summary" /><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Five Levels Of (Bioinformatics) Programming | Luke / blog</title>
-<meta name="generator" content="Jekyll v4.0.0" />
+<meta name="generator" content="Jekyll v4.0.1" />
 <meta property="og:title" content="Five Levels Of (Bioinformatics) Programming" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Applying five levels of supercharging to some bioinformatics code using Rust." />
@@ -16,8 +16,11 @@
 <meta property="og:image" content="https://www.lukeschiefelbein.com/blog/images/biology-rust/2021-11-12-09-45-14.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-12-01T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.lukeschiefelbein.com/blog/images/biology-rust/2021-11-12-09-45-14.png" />
+<meta property="twitter:title" content="Five Levels Of (Bioinformatics) Programming" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.lukeschiefelbein.com/blog/programming/rust/biology/2021/12/01/biology-rust.html"},"image":"https://www.lukeschiefelbein.com/blog/images/biology-rust/2021-11-12-09-45-14.png","description":"Applying five levels of supercharging to some bioinformatics code using Rust.","@type":"BlogPosting","url":"https://www.lukeschiefelbein.com/blog/programming/rust/biology/2021/12/01/biology-rust.html","headline":"Five Levels Of (Bioinformatics) Programming","dateModified":"2021-12-01T00:00:00-06:00","datePublished":"2021-12-01T00:00:00-06:00","@context":"https://schema.org"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-12-01T00:00:00-06:00","datePublished":"2021-12-01T00:00:00-06:00","description":"Applying five levels of supercharging to some bioinformatics code using Rust.","headline":"Five Levels Of (Bioinformatics) Programming","image":"https://www.lukeschiefelbein.com/blog/images/biology-rust/2021-11-12-09-45-14.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.lukeschiefelbein.com/blog/programming/rust/biology/2021/12/01/biology-rust.html"},"url":"https://www.lukeschiefelbein.com/blog/programming/rust/biology/2021/12/01/biology-rust.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css">
   <script src="/blog/assets/js/iframeResizer.min.js"></script><link type="application/atom+xml" rel="alternate" href="https://www.lukeschiefelbein.com/blog/feed.xml" title="Luke / blog" /><!-- Global site tag (gtag.js) - Google Analytics -->
@@ -44,9 +47,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap" rel="stylesheet">
 
 
-<!-- Begin Jekyll SEO tag v2.6.1 -->
+<!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Five Levels Of (Bioinformatics) Programming | Luke / blog</title>
-<meta name="generator" content="Jekyll v4.0.0" />
+<meta name="generator" content="Jekyll v4.0.1" />
 <meta property="og:title" content="Five Levels Of (Bioinformatics) Programming" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Applying five levels of supercharging to some bioinformatics code using Rust." />
@@ -57,8 +60,11 @@
 <meta property="og:image" content="https://www.lukeschiefelbein.com/blog/images/biology-rust/2021-11-12-09-45-14.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-12-01T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.lukeschiefelbein.com/blog/images/biology-rust/2021-11-12-09-45-14.png" />
+<meta property="twitter:title" content="Five Levels Of (Bioinformatics) Programming" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.lukeschiefelbein.com/blog/programming/rust/biology/2021/12/01/biology-rust.html"},"image":"https://www.lukeschiefelbein.com/blog/images/biology-rust/2021-11-12-09-45-14.png","description":"Applying five levels of supercharging to some bioinformatics code using Rust.","@type":"BlogPosting","url":"https://www.lukeschiefelbein.com/blog/programming/rust/biology/2021/12/01/biology-rust.html","headline":"Five Levels Of (Bioinformatics) Programming","dateModified":"2021-12-01T00:00:00-06:00","datePublished":"2021-12-01T00:00:00-06:00","@context":"https://schema.org"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-12-01T00:00:00-06:00","datePublished":"2021-12-01T00:00:00-06:00","description":"Applying five levels of supercharging to some bioinformatics code using Rust.","headline":"Five Levels Of (Bioinformatics) Programming","image":"https://www.lukeschiefelbein.com/blog/images/biology-rust/2021-11-12-09-45-14.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.lukeschiefelbein.com/blog/programming/rust/biology/2021/12/01/biology-rust.html"},"url":"https://www.lukeschiefelbein.com/blog/programming/rust/biology/2021/12/01/biology-rust.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -173,7 +179,7 @@ window.onload = wrap_img;
       </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <ul class="section-nav">
+    <ul id="toc" class="section-nav">
 <li class="toc-entry toc-h1"><a href="#level-1-python">Level 1: Python</a></li>
 <li class="toc-entry toc-h1"><a href="#level-2-rust">Level 2: Rust</a>
 <ul>
@@ -196,13 +202,13 @@ window.onload = wrap_img;
 </ul><h1 id="level-1-python">
 <a class="anchor" href="#level-1-python" aria-hidden="true"><span class="octicon octicon-link"></span></a>Level 1: Python</h1>
 
-<p>I want to make the switch from “data science” to bioinformatics. While most of my statistics and machine learning skills transfer pretty seamlessly to this new domain, I’ve also been learning more bioinformatics by doing <a href="https://rosalind.info/">Rosalind problems</a>. Rosalind is like <a href="https://projecteuler.net/archives">Project Euler</a> with a biology focus. I started out solving the problems in Python, the language I know best.</p>
+<p>Lately I’ve been getting interested in bioinformatics. While most of my statistics and machine learning skills transfer pretty seamlessly to this new domain, I’ve also been learning more bioinformatics by doing <a href="https://rosalind.info/">Rosalind problems</a>. Rosalind is like <a href="https://projecteuler.net/archives">Project Euler</a> with a biology focus. I started out solving the problems in Python, the language I know best.</p>
 
 <p>For example, in the second Rosalind <a href="http://rosalind.info/problems/rna/">problem</a> we’re asked to write a function that transcribes DNA to RNA. Here’s my Python solution:<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">1</a></sup></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># python hand-rolled
 </span><span class="k">def</span> <span class="nf">transcribe</span><span class="p">(</span><span class="n">dna</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">return</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">"U"</span> <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="s">'T'</span> <span class="k">else</span> <span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">dna</span><span class="p">])</span>
+    <span class="k">return</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">([</span><span class="s">"U"</span> <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="s">'T'</span> <span class="k">else</span> <span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">dna</span><span class="p">])</span>
 </code></pre></div></div>
 <hr>
 
@@ -228,7 +234,7 @@ window.onload = wrap_img;
 
 <p>The Rust implementation of <code class="highlighter-rouge">.transcribe</code> is pretty similar to the Python one (especially since I used Python type hints), except for the <code class="highlighter-rouge">&amp;</code> borrow notation and the <code class="highlighter-rouge">.collect</code> one has to explicitly call on the lazily evaluated <code class="highlighter-rouge">.chars</code> iterator.</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// rust hand-rolled</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// rust hand-rolled</span>
 <span class="nd">#[pyfunction]</span>
 <span class="k">fn</span> <span class="nf">transcribe</span><span class="p">(</span><span class="n">dna</span><span class="p">:</span> <span class="o">&amp;</span><span class="nb">str</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
     <span class="n">dna</span>
@@ -244,7 +250,7 @@ window.onload = wrap_img;
 </span><span class="kn">import</span> <span class="nn">bio_lib_string_rs</span>
 
 <span class="n">dna</span> <span class="o">=</span> <span class="s">"ACTGACTC"</span>
-<span class="n">bio_lib_string_rs</span><span class="o">.</span><span class="n">transcribe</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
+<span class="n">bio_lib_string_rs</span><span class="p">.</span><span class="n">transcribe</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
 </code></pre></div></div>
 <p>Since the Rust version is callable from Python, I could easily wrap both implementations in <a href="https://github.com/cyniphile/rosalind/blob/main/tests/test_benchmark.py">pytest benchmarks</a> for an initial speed test on a ~1000bp DNA string. I got the following results:
 <img src="/blog/images/biology-rust/2021-11-09-17-54-55.png" alt=""></p>
@@ -258,19 +264,19 @@ window.onload = wrap_img;
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># python hand-rolled 
 </span><span class="k">def</span> <span class="nf">transcribe</span><span class="p">(</span><span class="n">dna</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">return</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">"U"</span> <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="s">'T'</span> <span class="k">else</span> <span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">dna</span><span class="p">])</span>
+    <span class="k">return</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">([</span><span class="s">"U"</span> <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="s">'T'</span> <span class="k">else</span> <span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">dna</span><span class="p">])</span>
 </code></pre></div></div>
 
 <p>when I could have just used Python’s built-in <code class="highlighter-rouge">.replace</code> function:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># python built-in
 </span><span class="k">def</span> <span class="nf">transcribe_builtin</span><span class="p">(</span><span class="n">dna</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">dna</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"T"</span><span class="p">,</span> <span class="s">"U"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dna</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"T"</span><span class="p">,</span> <span class="s">"U"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Sure, Rust is a lot faster if we compare apples-to-apples implementations of the same algorithm, but that’s not quite fair in this case because you’d never actually use the hand-rolled implementation in Python, or even Rust for that matter (which also has a built-in <code class="highlighter-rouge">.replace</code>). So I <a href="https://github.com/cyniphile/rosalind/blob/main/tests/test_benchmark.py">benchmarked the built-ins</a> as well:</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// rust built-in</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// rust built-in</span>
 <span class="nd">#[pyfunction]</span>
 <span class="k">fn</span> <span class="nf">transcribe_builtin</span><span class="p">(</span><span class="n">dna</span><span class="p">:</span> <span class="o">&amp;</span><span class="nb">str</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
     <span class="n">dna</span><span class="nf">.replace</span><span class="p">(</span><span class="s">"T"</span><span class="p">,</span> <span class="s">"U"</span><span class="p">)</span>
@@ -283,7 +289,7 @@ window.onload = wrap_img;
 </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 
 <span class="k">def</span> <span class="nf">transcribe_np</span><span class="p">(</span><span class="n">dna</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="s">"T"</span><span class="p">,</span> <span class="s">"U"</span><span class="p">))</span>  <span class="c1"># type: ignore
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">char</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="s">"T"</span><span class="p">,</span> <span class="s">"U"</span><span class="p">))</span>  <span class="c1"># type: ignore
 </span></code></pre></div></div>
 <p>I also set up some <a href="https://github.com/cyniphile/rosalind/blob/f8f0c3b89a34f269cdbce05e74fed93c198ace35/bio-lib-string-rs/src/lib.rs#L213">separate benchmarks</a> of the Rust functions called directly in Rust, no Python or PyO3 involved. Here are the results on the 1kbp file:</p>
 
@@ -319,7 +325,7 @@ This plot was made using a <a href="https://github.com/nschloe/perfplot">perfplo
                 <span class="k">continue</span>
             <span class="n">test_seq</span> <span class="o">=</span> <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">:(</span><span class="n">i</span> <span class="o">+</span> <span class="n">length</span><span class="p">)]</span>
             <span class="k">if</span> <span class="n">is_reverse_palindrome</span><span class="p">(</span><span class="n">test_seq</span><span class="p">):</span>
-                <span class="n">locations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">locations</span><span class="p">.</span><span class="n">append</span><span class="p">(</span>
                     <span class="n">PalindromeLocation</span><span class="p">(</span><span class="n">start_index</span><span class="o">=</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">length</span><span class="p">)</span>
                 <span class="p">)</span>
     <span class="k">return</span> <span class="n">locations</span>
@@ -330,7 +336,7 @@ This plot was made using a <a href="https://github.com/nschloe/perfplot">perfplo
 
 
 <span class="k">def</span> <span class="nf">reverse_complement_dna</span><span class="p">(</span><span class="n">dna_seq</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">return</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">dna_base_complement</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">dna_seq</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">([</span><span class="n">dna_base_complement</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">dna_seq</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
 
 
 <span class="k">def</span> <span class="nf">dna_base_complement</span><span class="p">(</span><span class="n">base</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span> 
@@ -343,7 +349,7 @@ This plot was made using a <a href="https://github.com/nschloe/perfplot">perfplo
     <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s">"C"</span><span class="p">:</span>
         <span class="k">return</span> <span class="s">"G"</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="nb">Exception</span><span class="p">(</span><span class="s">"Non-DNA base </span><span class="se">\"</span><span class="s">{}</span><span class="se">\"</span><span class="s"> found."</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">base</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="nb">Exception</span><span class="p">(</span><span class="s">"Non-DNA base </span><span class="se">\"</span><span class="s">{}</span><span class="se">\"</span><span class="s"> found."</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">base</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>The Rust implementation is very similar but uses a more functional style (<code class="highlighter-rouge">.fold</code> instead of an outer <code class="highlighter-rouge">for</code> loop)<sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote" rel="footnote">6</a></sup>.</p>
@@ -363,10 +369,10 @@ This plot was made using a <a href="https://github.com/nschloe/perfplot">perfplo
     <span class="n">seq</span><span class="nf">.chars</span><span class="p">()</span>
         <span class="nf">.take</span><span class="p">(</span><span class="n">seq</span><span class="nf">.len</span><span class="p">()</span> <span class="o">-</span> <span class="n">min_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
         <span class="nf">.enumerate</span><span class="p">()</span>
-        <span class="nf">.fold</span><span class="p">(</span><span class="nn">Vec</span><span class="p">::</span><span class="nf">new</span><span class="p">(),</span> <span class="p">|</span><span class="k">mut</span> <span class="n">acc</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">_</span><span class="p">)|</span> <span class="p">{</span>
-            <span class="k">for</span> <span class="n">length</span> <span class="nf">in</span> <span class="p">(</span><span class="n">min_len</span><span class="o">..</span><span class="p">(</span><span class="n">max_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span><span class="nf">.step_by</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">.fold</span><span class="p">(</span><span class="nn">Vec</span><span class="p">::</span><span class="nf">new</span><span class="p">(),</span> <span class="p">|</span><span class="k">mut</span> <span class="n">acc</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">_</span><span class="p">)|</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="n">length</span> <span class="k">in</span> <span class="p">(</span><span class="n">min_len</span><span class="o">..</span><span class="p">(</span><span class="n">max_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span><span class="nf">.step_by</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
                 <span class="k">if</span> <span class="n">i</span> <span class="o">+</span> <span class="n">length</span> <span class="o">&gt;</span> <span class="n">seq</span><span class="nf">.len</span><span class="p">()</span> <span class="p">{</span>
-                    <span class="n">continue</span><span class="p">;</span>
+                    <span class="k">continue</span><span class="p">;</span>
                 <span class="p">}</span>
                 <span class="k">let</span> <span class="n">test_seq</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="o">..</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">length</span><span class="p">)];</span>
                 <span class="k">if</span> <span class="nf">is_reverse_palindrome</span><span class="p">(</span><span class="n">test_seq</span><span class="p">)</span> <span class="p">{</span>
@@ -394,7 +400,7 @@ This plot was made using a <a href="https://github.com/nschloe/perfplot">perfplo
         <span class="sc">'T'</span> <span class="k">=&gt;</span> <span class="sc">'A'</span><span class="p">,</span>
         <span class="sc">'G'</span> <span class="k">=&gt;</span> <span class="sc">'C'</span><span class="p">,</span>
         <span class="sc">'C'</span> <span class="k">=&gt;</span> <span class="sc">'G'</span><span class="p">,</span>
-        <span class="mi">_</span> <span class="k">=&gt;</span> <span class="nd">panic!</span><span class="p">(</span><span class="s">"Non-DNA base </span><span class="se">\"</span><span class="s">{}</span><span class="se">\"</span><span class="s"> found."</span><span class="p">,</span> <span class="n">base</span><span class="p">),</span>
+        <span class="n">_</span> <span class="k">=&gt;</span> <span class="nd">panic!</span><span class="p">(</span><span class="s">"Non-DNA base </span><span class="se">\"</span><span class="s">{}</span><span class="se">\"</span><span class="s"> found."</span><span class="p">,</span> <span class="n">base</span><span class="p">),</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -402,11 +408,11 @@ This plot was made using a <a href="https://github.com/nschloe/perfplot">perfplo
 <p>And I also added a small Python wrapper to map the Rust <code class="highlighter-rouge">PalindromeLocation</code> <code class="highlighter-rouge">struct</code> to the Python <code class="highlighter-rouge">dataclass</code>, which adds more language interface overhead<sup id="fnref:8" role="doc-noteref"><a href="#fn:8" class="footnote" rel="footnote">7</a></sup>.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">find_reverse_palindromes_rs</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PalindromeLocation</span><span class="p">]:</span>
-    <span class="n">ps</span> <span class="o">=</span> <span class="n">bio_lib_string_rs</span><span class="o">.</span><span class="n">find_reverse_palindromes</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+    <span class="n">ps</span> <span class="o">=</span> <span class="n">bio_lib_string_rs</span><span class="p">.</span><span class="n">find_reverse_palindromes</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">[</span> 
         <span class="n">PalindromeLocation</span><span class="p">(</span>
-            <span class="n">start_index</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">start_index</span><span class="p">,</span>
-            <span class="n">length</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">length</span>
+            <span class="n">start_index</span><span class="o">=</span><span class="n">p</span><span class="p">.</span><span class="n">start_index</span><span class="p">,</span>
+            <span class="n">length</span><span class="o">=</span><span class="n">p</span><span class="p">.</span><span class="n">length</span>
         <span class="p">)</span>
         <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ps</span> 
     <span class="p">]</span>
@@ -433,8 +439,8 @@ This plot was made using a <a href="https://github.com/nschloe/perfplot">perfplo
         <span class="sc">'T'</span> <span class="k">=&gt;</span> <span class="sc">'A'</span><span class="p">,</span>
         <span class="sc">'G'</span> <span class="k">=&gt;</span> <span class="sc">'C'</span><span class="p">,</span>
         <span class="sc">'C'</span> <span class="k">=&gt;</span> <span class="sc">'G'</span><span class="p">,</span>
-        <span class="c">// Commented out for now...</span>
-        <span class="c">// _ =&gt; panic!("Non-DNA base \"{}\" found.", base),</span>
+        <span class="c1">// Commented out for now...</span>
+        <span class="c1">// _ =&gt; panic!("Non-DNA base \"{}\" found.", base),</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
@@ -529,11 +535,11 @@ Note in this example I’ve made use of <code class="highlighter-rouge">RnaNucle
     <span class="n">min_len</span> <span class="o">=</span> <span class="mi">4</span>
     <span class="n">max_len</span> <span class="o">=</span> <span class="mi">12</span>
     <span class="n">locations</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">ray_seq</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>  <span class="c1"># type: ignore
+    <span class="n">ray_seq</span> <span class="o">=</span> <span class="n">ray</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>  <span class="c1"># type: ignore
 </span>
-    <span class="o">@</span><span class="n">ray</span><span class="o">.</span><span class="n">remote</span>  <span class="c1"># type: ignore
+    <span class="o">@</span><span class="n">ray</span><span class="p">.</span><span class="n">remote</span>  <span class="c1"># type: ignore
 </span>    <span class="k">def</span> <span class="nf">is_palindrome</span><span class="p">(</span><span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PalindromeLocation</span><span class="p">]:</span>
-        <span class="n">seq</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ray_seq</span><span class="p">)</span>  <span class="c1"># type: ignore
+        <span class="n">seq</span> <span class="o">=</span> <span class="n">ray</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">ray_seq</span><span class="p">)</span>  <span class="c1"># type: ignore
 </span>        <span class="n">locations_inner</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="n">BATCH_SIZE</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">length</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">min_len</span><span class="p">,</span> <span class="n">max_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
@@ -541,15 +547,15 @@ Note in this example I’ve made use of <code class="highlighter-rouge">RnaNucle
 </span>                    <span class="k">continue</span>
                 <span class="n">test_seq</span> <span class="o">=</span> <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">:(</span><span class="n">i</span> <span class="o">+</span> <span class="n">length</span><span class="p">)]</span>  <span class="c1"># type: ignore
 </span>                <span class="k">if</span> <span class="n">is_reverse_palindrome</span><span class="p">(</span><span class="n">test_seq</span><span class="p">):</span>  <span class="c1"># type: ignore
-</span>                    <span class="n">locations_inner</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span>                    <span class="n">locations_inner</span><span class="p">.</span><span class="n">append</span><span class="p">(</span>
                         <span class="n">PalindromeLocation</span><span class="p">(</span><span class="n">start_index</span><span class="o">=</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">length</span><span class="p">)</span>
                     <span class="p">)</span>
         <span class="k">return</span> <span class="n">locations_inner</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">min_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">BATCH_SIZE</span><span class="p">):</span>
-        <span class="n">locations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">is_palindrome</span><span class="o">.</span><span class="n">remote</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">functools</span><span class="o">.</span><span class="nb">reduce</span><span class="p">(</span> <span class="c1"># flatten list of list
-</span>        <span class="n">operator</span><span class="o">.</span><span class="n">iconcat</span><span class="p">,</span> <span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">locations</span><span class="p">),</span> <span class="p">[]</span>  <span class="c1"># type: ignore
+        <span class="n">locations</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">is_palindrome</span><span class="p">.</span><span class="n">remote</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">functools</span><span class="p">.</span><span class="nb">reduce</span><span class="p">(</span> <span class="c1"># flatten list of list
+</span>        <span class="n">operator</span><span class="p">.</span><span class="n">iconcat</span><span class="p">,</span> <span class="n">ray</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">locations</span><span class="p">),</span> <span class="p">[]</span>  <span class="c1"># type: ignore
 </span>    <span class="p">)</span>
 </code></pre></div></div>
 <p>Now let’s run this and take a look at our CPU monitor:</p>
@@ -565,10 +571,10 @@ Yeah baby! All six cores fully engaged sir!</p>
     <span class="n">seq</span><span class="nf">.into_par_iter</span><span class="p">()</span>
         <span class="nf">.take</span><span class="p">(</span><span class="n">seq</span><span class="nf">.len</span><span class="p">()</span> <span class="o">-</span> <span class="n">min_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
         <span class="nf">.enumerate</span><span class="p">()</span>
-        <span class="nf">.fold</span><span class="p">(</span><span class="nn">Vec</span><span class="p">::</span><span class="n">new</span><span class="p">,</span> <span class="p">|</span><span class="k">mut</span> <span class="n">acc</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">_</span><span class="p">)|</span> <span class="p">{</span>
-            <span class="k">for</span> <span class="n">length</span> <span class="nf">in</span> <span class="p">(</span><span class="n">min_len</span><span class="o">..</span><span class="p">(</span><span class="n">max_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span><span class="nf">.step_by</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">.fold</span><span class="p">(</span><span class="nn">Vec</span><span class="p">::</span><span class="n">new</span><span class="p">,</span> <span class="p">|</span><span class="k">mut</span> <span class="n">acc</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">_</span><span class="p">)|</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="n">length</span> <span class="k">in</span> <span class="p">(</span><span class="n">min_len</span><span class="o">..</span><span class="p">(</span><span class="n">max_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span><span class="nf">.step_by</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
                 <span class="k">if</span> <span class="n">i</span> <span class="o">+</span> <span class="n">length</span> <span class="o">&gt;</span> <span class="n">seq</span><span class="nf">.len</span><span class="p">()</span> <span class="p">{</span>
-                    <span class="n">continue</span><span class="p">;</span>
+                    <span class="k">continue</span><span class="p">;</span>
                 <span class="p">}</span>
                 <span class="k">let</span> <span class="n">test_seq</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="o">..</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">length</span><span class="p">)];</span>
                 <span class="k">if</span> <span class="nf">is_reverse_palindrome</span><span class="p">(</span><span class="n">test_seq</span><span class="p">)</span> <span class="p">{</span>
@@ -609,7 +615,7 @@ Remember these results are all calls from Python.</p>
 
 <p>This is where implementing things in Rust got incredibly tricky, and frankly very unproductive. I had to switch over to Rust’s nightly build to be able to make use of experimental typing features. I had to rewrite one line functions as 25-line home-made iterator implementations. I had to really get in the mud with lifetimes, traits, and generics, leading to function signatures like:</p>
 
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">pub</span> <span class="k">fn</span> <span class="n">transcribe</span><span class="o">&lt;</span><span class="nv">'a</span><span class="o">&gt;</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="n">DnaIter</span><span class="o">&lt;</span><span class="nv">'a</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="k">impl</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Item</span> <span class="o">=</span> <span class="n">RnaNucleotide</span><span class="o">&gt;</span> <span class="o">+</span> <span class="nv">'a</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">pub</span> <span class="k">fn</span> <span class="n">transcribe</span><span class="o">&lt;</span><span class="nv">'a</span><span class="o">&gt;</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="n">DnaIter</span><span class="o">&lt;</span><span class="nv">'a</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="k">impl</span> <span class="nb">Iterator</span><span class="o">&lt;</span><span class="n">Item</span> <span class="o">=</span> <span class="n">RnaNucleotide</span><span class="o">&gt;</span> <span class="o">+</span> <span class="nv">'a</span>
 <span class="k">where</span>
     <span class="n">DnaIter</span><span class="o">&lt;</span><span class="nv">'a</span><span class="o">&gt;</span><span class="p">:</span> <span class="nv">'a</span><span class="p">,</span>
 <span class="p">{</span>
@@ -693,7 +699,7 @@ Remember these results are all calls from Python.</p>
       <p>even if all the variants in the enum implement a <code class="highlighter-rouge">.complement</code> method. Instead you have to do <a href="https://stackoverflow.com/questions/51188460/how-can-i-structure-destructure-an-enum-of-enums">some wrapper/destructuring stuff</a> (which is pretty messy) or you have to use <a href="https://doc.rust-lang.org/rust-by-example/generics/bounds.html">trait bounds</a> like so:</p>
       <div class="language-rust highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="k">pub</span> <span class="k">trait</span> <span class="n">Nucleotide</span> <span class="p">{</span>
-    <span class="k">fn</span> <span class="nf">complement</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">Self</span><span class="p">;</span>
+    <span class="k">fn</span> <span class="nf">complement</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="k">Self</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="k">impl</span> <span class="n">Nucleotide</span><span class="p">)</span> <span class="p">{</span><span class="n">s</span><span class="nf">.complement</span><span class="p">();}</span>
